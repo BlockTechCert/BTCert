@@ -32,24 +32,24 @@ Specifically, the prototype workflow is as follows: Firstly, the student applies
 As it is shown in Figure 2, the system briefly consists four components in our implementation: verification application including federated identity, issuing application involving multi-signature and BTC-address based revocation, Blockchain and local Database adopted by MongoDB.
 
 The issuing applications are responsible for the main business logic which includes the applying for, examining, signing and issuing of the certificates. The issuing applications are designed to merge the hash of the certificate with a Merkle tree and send the Merkle root to the Blockchain. Also, the issuing applications deal with the revocations of certificates. The main component functions for issuing applications are described as follows:
->+	Login function
-+	Privilege control (RBAC mode)
-+	The approval process (student->>checker->>supervisor->>administration staff->>head of school)
-+	Multi-signature function
-+	Auditing the certificate
-+	View the published certificate
-+	View the signed certificate
-+	View the certificate ready to sign
-+	Revoking the certificate batchly
-+	Administration page to manage the user, the privilege and certificate.
-+	Cold storage for the keys (will release in next version)
+> +	Login function
+> +	Privilege control (RBAC mode)
+> +	The approval process (student->>checker->>supervisor->>administration staff->>head of school)
+> +	Multi-signature function
+> +	Auditing the certificate
+> +	View the published certificate
+> +	View the signed certificate
+> +	View the certificate ready to sign
+> +	Revoking the certificate batchly
+> +	Administration page to manage the user, the privilege and certificate.
+> +	Cold storage for the keys (will release in next version)
 
 The verification application focuses on checking the authenticity and integrity of the certificates that have been issued. It includes two main components: a web-based page and an Android-based application. They use the same mechanism, and fetch the transaction message through the blockchain API and compare the transaction message with the verification data from the receipt. The mechanism can be briefly described in the following way: check the authentication code is valid; check the hash with the local certificate; confirm the hash is in the Merkle tree; ensure the Merkle root is in the blockchain; verify the certificate has not been revoked; validate the expired date of the certificate. Also, it has to be mentioned that for the convenience of sharing the certificates, the Android-based application allows for verification of the documents by scanning the QR code directly. The main component functions for verification application are described as follows:
 >+ Upload the PDF files / Scan the QR code
-+ Calculate the hash value for the PDF file 
-+ The interaction with blockchain API 
-+ Authentication management: the issuing address relationship with the school identity.
-+ The logic of the verification:
+>+ Calculate the hash value for the PDF file 
+>+ The interaction with blockchain API 
+>+ Authentication management: the issuing address relationship with the school identity.
+>+ The logic of the verification:
 >> The verification of hash value on the certificate  (to avoid tampering)  
 >> The verification to confirm if the hash value is in the merkle tree
 >> The verification to confirm if the hash value of the merkle tree root is on the blockchain
