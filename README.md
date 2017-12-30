@@ -12,7 +12,7 @@
 ```
 
 ## Overview  
-BTCert is a project for Rujia's master degree, also, it is a project sponsored by ITIC University of Birmingham . The project is inspired by Blockcerts and based on its open standard. BTCert employed the same principle with Blockcerts. BTCert releases the credential by sending a Bitcoin transaction from awarding institution to recipient. A good metaphor is illustrated in Figure 1, a set of hash value of certificates would be attached to the Bitcoin transaction when Alice paid 5 BTC to Tom(replace the node node "thank you" by the merkle root). Then, BTCert allows an independent verifier to verify the authenticity of such credential by accessing hash value on the blockchain and comparing it with the local digital file's.
+BTCert is a project for Rujia's master degree and sponsored by ITIC University of Birmingham. BTCert is a blockchain based project for protecting authentic qualifications (academic certificate). The project is inspired by Blockcerts and based on its open standard. BTCert employed the same principle with Blockcerts. BTCert releases the credential by sending a Bitcoin transaction from awarding institution to recipient. A good metaphor is illustrated in Figure 1, a set of hash value of certificates would be attached to the Bitcoin transaction when Alice paid 5 BTC to Tom(replace the node node "thank you" by the merkle root). Then, BTCert allows an independent verifier to verify the authenticity of such credential by accessing hash value on the blockchain and comparing it with the local digital file's.
 
 ![](src/main/resources/static/images/metaphor.png)
 *Figure 1. Working mechanism of Blockcerts*
