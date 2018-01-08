@@ -8,7 +8,7 @@
 ├── Overview
 ├── Prototype workflow
 ├── System architecture
-├── System Security Analysis
+├── System security analysis
 ├── Prject resource 
 ├── System deployment
 └── Futrue work
@@ -63,7 +63,7 @@ The blockchain acts as the infrastructure of trust and a distributed database fo
 ![](src/main/resources/static/images/architecture.png?)
 *Figure 3. System architecture diagram*
 
-## System Security Analysis
+## System security analysis
 **Network security**  
 Currently, it's dangerous to open server for receiving the internet request directly. Most companies buffer their contact with the outside world by employing a DMZ. The DMZ create a security gap between intranet and internet. Ideally, to access internal resources, every request has to go through this DMZ. However, even DMZ has the most stringent rules. there is still the probability that hacker from the outside still can access the internal side. In our project, our core database and issuing service run on the internal network that is an envelope environment, in other words, our deployed environment is physically isolated from the outside. A hacker from the outside has no possibility of accessing the internal side except for physical intrusion. This is much more secure than traditional service running inside a DMZ.
 ![](src/main/resources/static/images/network.png?)
