@@ -26,7 +26,7 @@ Lastly, since the core cryptographic parts of BTCert are implemented by utilizin
 
 ## Prototype workflow
 For helping the readers to have a better understand of BTCert, we created a prototype model workflow for four main roles, including student, checker, issuer, system and employer. The prototype workflow is shown in the figure 2 below.
-![](src/main/resources/static/images/workflow prototype.png)
+![](src/main/resources/static/images/workflowPrototype.png)
 *Figure 2. Workflow of prototype.* 
 
 Specifically, the prototype workflow is as follows: Firstly, the student applies to the school for a certificate, and the certifiers check the students’ information and merge the certificate with a Bitcoin transaction once it is approved. Then the majority of the academic committee members sign it with their private keys. After that, the system broadcasts the transaction which contains the Merkle root for all the certificates. Following the above step, the student receives a JSON-based certificate once the transaction is confirmed by the miners. In the next stage, the student provides the JSON-based certificate to the employer, when he or she applies for a job. Lastly, the company verifies the certificate via access to the Blockchain and checks the authentication code to confirm the indentity of the school.
