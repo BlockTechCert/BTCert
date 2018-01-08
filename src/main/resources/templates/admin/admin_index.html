@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> - Dashboard</title>
+    <link rel="shortcut icon" href="favicon.ico"> <link href="/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/admin/css/animate.css" rel="stylesheet">
+    <link href="/admin/css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="row row-sm text-center">
+                        <div class="col-xs-6">
+                            <div class="panel padder-v item">
+                                <div class="h1 text-info font-thin h1">32902</div>
+                                <span class="text-muted text-xs">Total Numbers of Students</span>
+                                <div class="top text-right w-full">
+                                    <i class="fa fa-caret-up text-warning m-r-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="panel padder-v item bg-info">
+                                <div class="h1 text-fff font-thin h1">32900</div>
+                                <span class="text-muted text-xs">Total Certificates Number</span>
+                                <div class="top text-right w-full">
+                                    <i class="fa fa-caret-down text-warning m-r-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="panel padder-v item bg-primary">
+                                <div class="h1 text-fff font-thin h1">521</div>
+                                <span class="text-muted text-xs">Valid Certificates Number</span>
+                                <div class="top text-right w-full">
+                                    <i class="fa fa-caret-down text-warning m-r-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="panel padder-v item">
+                                <div class="font-thin h1">20</div>
+                                <span class="text-muted text-xs">Revoked Certificates Number</span>
+                                <div class="bottom text-left">
+                                    <i class="fa fa-caret-up text-warning m-l-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title" style="border-bottom:none;background:#fff;">
+                            <h5>Live Bitcoin transaction fee and deferred time</h5>
+                        </div>
+                        <div class="ibox-content" style="border-top:none;">
+                            <div id="chartContainer" style="height: 220px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="row">-->
+                <!--<div class="col-sm-6" style="padding-right:0;">-->
+                    <!--<div class="btcwdgt-chart" bw-theme="light" style= "width: 100%"></div>-->
+                <!--</div>-->
+                <!--<div class="col-sm-6" style="padding-left:0;">-->
+                    <!--<div class="row row-sm text-center">-->
+                        <!--<div class="col-xs-12">-->
+                            <!--<div class="panel padder-v item bg-info">-->
+                                <!--<div class="h1 text-fff font-thin h1">32902</div>-->
+                                <!--<span class="text-muted text-xs">Transaction Address</span>-->
+                                <!--<div class="top text-right w-full">-->
+                                    <!--<i class="fa fa-caret-up text-warning m-r-sm"></i>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-xs-12">-->
+                            <!--<div class="panel padder-v item">-->
+                                <!--<div class="h1  font-thin h1">0.0001</div>-->
+                                <!--<span class="text-muted text-xs">Recommend Transaction Fee</span>-->
+                                <!--<div class="top text-right w-full">-->
+                                    <!--<i class="fa fa-caret-down text-warning m-r-sm"></i>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-xs-12">-->
+                            <!--<div class="panel padder-v item bg-primary">-->
+                                <!--<div class="font-thin text-fff h1">20</div>-->
+                                <!--<span class="text-muted text-xs">Revoked Certificates Number</span>-->
+                                <!--<div class="bottom text-left">-->
+                                    <!--<i class="fa fa-caret-up text-warning m-l-sm"></i>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+<!-- 全局js -->
+<script src="/admin/js/jquery.min.js?v=2.1.4"></script>
+<script src="/admin/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/admin/js/plugins/layer/layer.min.js"></script>
+<!-- Flot -->
+<script src="/admin/js/plugins/flot/jquery.flot.js"></script>
+<script src="/admin/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="/admin/js/plugins/flot/jquery.flot.resize.js"></script>
+<script src="/admin/js/plugins/flot/jquery.flot.pie.js"></script>
+<!-- 自定义js -->
+<script src="/admin/js/content.js"></script>
+<!--flotdemo-->
+
+<script type="text/javascript">
+     (function(b,i,t,C,O,I,N) {
+        window.addEventListener('load',function() {
+            if(b.getElementById(C))return;
+            I=b.createElement(i),N=b.getElementsByTagName(i)[0];
+            I.src=t;I.id=C;N.parentNode.insertBefore(I, N);
+        },false)
+    })(document,'script','https://widgets.bitcoin.com/widget.js','btcwdgt'); 
+</script>
+
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
+<script type="text/javascript">
+    window.onload = function () {
+
+        $.getJSON("https://bitcoinfees.21.co/api/v1/fees/list" ,function(data){
+            renderChart(data.fees);
+        }).fail(function() {
+            data = [{"minFee":0,"maxFee":0,"dayCount":66,"memCount":0,"minDelay":17,"maxDelay":10000,"minMinutes":120,"maxMinutes":10000},{"minFee":1,"maxFee":20,"dayCount":46126,"memCount":13054,"minDelay":4,"maxDelay":34,"minMinutes":20,"maxMinutes":360},{"minFee":21,"maxFee":40,"dayCount":31422,"memCount":4358,"minDelay":1,"maxDelay":13,"minMinutes":0,"maxMinutes":180},{"minFee":41,"maxFee":60,"dayCount":12193,"memCount":1852,"minDelay":0,"maxDelay":5,"minMinutes":0,"maxMinutes":90},{"minFee":61,"maxFee":80,"dayCount":5538,"memCount":645,"minDelay":0,"maxDelay":5,"minMinutes":0,"maxMinutes":80},{"minFee":81,"maxFee":100,"dayCount":7705,"memCount":383,"minDelay":0,"maxDelay":4,"minMinutes":0,"maxMinutes":60},{"minFee":101,"maxFee":120,"dayCount":7511,"memCount":364,"minDelay":0,"maxDelay":2,"minMinutes":0,"maxMinutes":50},{"minFee":121,"maxFee":140,"dayCount":9636,"memCount":213,"minDelay":0,"maxDelay":2,"minMinutes":0,"maxMinutes":40},{"minFee":141,"maxFee":160,"dayCount":15572,"memCount":316,"minDelay":0,"maxDelay":1,"minMinutes":0,"maxMinutes":35},{"minFee":161,"maxFee":180,"dayCount":32263,"memCount":566,"minDelay":0,"maxDelay":1,"minMinutes":0,"maxMinutes":30},{"minFee":181,"maxFee":200,"dayCount":44923,"memCount":902,"minDelay":0,"maxDelay":0,"minMinutes":0,"maxMinutes":25},{"minFee":201,"maxFee":220,"dayCount":57083,"memCount":1354,"minDelay":0,"maxDelay":0,"minMinutes":0,"maxMinutes":25},{"minFee":221,"maxFee":240,"dayCount":8609,"memCount":202,"minDelay":0,"maxDelay":0,"minMinutes":0,"maxMinutes":25},{"minFee":241,"maxFee":260,"dayCount":8557,"memCount":183,"minDelay":0,"maxDelay":0,"minMinutes":0,"maxMinutes":25},{"minFee":261,"maxFee":26050,"dayCount":14667,"memCount":331,"minDelay":0,"maxDelay":0,"minMinutes":0,"maxMinutes":25}]
+            renderChart(data);
+        })
+    }
+
+    function renderChart(data){
+        var dataPoints = [];
+        for(var i = 2 ; i < data.length - 2; i++){
+            dataPoints.push({"x":data[i].maxFee/100000000,"y":data[i].maxMinutes });
+        }
+
+        var chart= new CanvasJS.Chart("chartContainer", {
+            title:{
+                text: "X: fee/byte, Y: confirm time/mins"
+            },
+            animationEnabled: true,
+            axisY:{
+                includeZero: false,
+                labelFontColor: "#369EAD" ,
+                lineColor: "#369EAD" ,
+                lineThickness: 3,
+                minimum:13,
+            },
+            toolTip: {
+                shared: true
+            },
+
+            axisY2:{
+                includeZero: false,
+                labelFontColor: "#C24642",
+                lineColor: "#C24642",
+                lineThickness: 3,
+                minimum:25,
+            },
+            axisX: {
+                lineThickness: 2
+            },
+            data: [
+                {
+                    type: "stepLine",
+                    lineThickness: 3,
+                    dataPoints: dataPoints
+                }
+            ]
+        });
+        chart.render();
+    }
+</script>
+</body>
+
+</html>

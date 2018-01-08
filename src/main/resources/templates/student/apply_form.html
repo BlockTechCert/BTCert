@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/header :: header-css"></head>	
+<body>
+    <div th:replace="fragments/header :: header"/></div>
+    
+    <div class="content">
+        <div class="wrap wrap-background">
+            <div class="row-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="column-content column-main">
+                            <div class="row content-header">
+                                <h4 class="page-title"><i class="fa fa-user" aria-hidden="true"></i>  Apply for a certificate</h4>
+                                <ol class="breadcrumb p-0 m-0">
+                                    <li>
+                                        <a class="page-title-copy" href="#">Apply for a certificate</a>
+                                    </li>
+                                    <li class="active">
+                                        Home
+                                    </li>
+                                </ol>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="given_name">Given Name</label>
+                                    <input type="text" class="form-control" id="given_name" placeholder="given name"></input>
+                                    <small class="text-muted">Your given name, first name</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="family_name">Family Name</label>
+                                    <input type="text" class="form-control" id="family_name" placeholder="family name"></input>
+                                    <small class="text-muted">Your family name, surname</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="birthday">Birthday</label>
+                                    <input type="text" class="form-control" id="birthday" value="1995-01-01"></input>
+                                </div>
+
+                                <input type="hidden" id ="apply_note" value = "apply_note"></input>
+                                <input type="hidden" id ="apply_state" value = "apply_state"></input>
+                                <input type="hidden" id ="apply_time" value = "apply_time"></input>
+                                <input type="hidden" id ="handle_time" value = "handle_time"></input>
+                                <input type="hidden" id ="id" value = "id"></input>
+                                <input type="hidden" id ="user_id" value = "user_id"></input>
+                                <div class="form-group">
+                                    <label for="identity_type">Identity Type</label>
+                                    <select class="form-control" id = "identity_type">
+                                        <option value="email">email</option>
+                                        <option value="studentId">studentId</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="identity">Identity value</label>
+                                    <input type="text" class="form-control" id="identity" placeholder=""></input>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="apply_type">Apply Type</label>
+                                    <select class="form-control" id = "apply_type">
+                                        <option value="Certificate">Certificate</option>
+                                        <option value="Transcript">Transcript</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="file">Your Apply File Hash</label>
+
+                                    <small class="text-muted"><span id="file_hash_show"></span></small>
+
+                                    <input id="file" type="file" class="file"></input>
+                                    <input id="file_hash" type="hidden" value=""></input>
+
+                                </div>
+                            </div>
+
+                        </div>
+                            <div class="button-right">
+                                <button type="button" class="btn btn-primary" onclick="applyCertificate()">Apply</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+     
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

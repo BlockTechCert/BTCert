@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/header :: header-css"></head>	
+<body>
+	<span id="student-name" th:inline="text" style = "display: none">[[${#httpServletRequest.remoteUser}]]</span>
+	<div th:replace="fragments/header :: header"/></div>
+    
+        <div class="content">
+        <div class="wrap wrap-background">
+            <div class="row-content">
+                <div class="container">
+                    <div class="row">
+                           <div class="column-content column-main column-blue">
+		                            <div class="row content-header">
+		                                <h4 class="page-title"><i class="fa fa-history" aria-hidden="true"></i> UnSigned Transaction</h4>
+		                                <ol class="breadcrumb p-0 m-0">
+		                                    <li>
+		                                        <a class="page-title-copy" href="#">UnSigned Transaction</a>
+		                                    </li>
+		                                    <li class="active">
+		                                        Home
+		                                    </li>
+		                                </ol>
+		                                <div class="clearfix"></div>
+		                            </div>
+					               <div id="toolbar" class="btn-group">
+					                  <button id="btn_add" type="button" class="btn btn-default" onclick="checkTransaction()">
+					                       <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span>Check
+					                   </button> 
+					                   <button id="btn_edit" type="button" class="btn btn-default" onclick="signTransaction()">
+					                       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Sign
+					                   </button>
+					                   <!-- <button id="btn_add" type="button" class="btn btn-default" onclick="broadCastTransaction()">
+					                       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Broadcast Transaction
+					                   </button> -->
+					                   
+					               </div>
+					               <table id="table-list"></table>
+					         </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    
+    <!-- 修改模态框 -->
+	<div class="modal fade modal-edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Sign the Transaction</h4>
+				</div>
+				<div class="modal-body">
+					<div id="alert-message-success" class="alert alert-success" role="alert"  style="display:none;">
+						<i class="fa fa-check-circle"></i> Your request has been succesfully updated
+					</div>
+					<div id="alert-message-fail" class="alert alert-danger" role="alert" style="display:none;">
+						<i class="fa fa-times-circle"></i> Sorry, please check your form
+					</div>
+					<table class="table table-hover">
+                         <thead>
+                             <tr>
+                                 <th>Signer Name</th>
+                                 <th>Sign Time</th>
+                             </tr>
+                         </thead>
+                         <tbody id ="sutb">
+                              <tr>
+                              	<td></td>
+                              	<td></td>
+                              </tr>   
+                         </tbody>
+                     </table>
+					
+					<label for="usr">Private Key:</label>
+					<div class="input-group">
+						<input type="password" class="form-control" placeholder="privatekey" id ="privatekey">
+						<span class="input-group-btn">
+							<button class="showKey btn btn-default" type="button">Show</button>
+						</span>
+					</div>
+					
+					<div id="privatekeydes" class="alert alert-success" role="alert" style="display:none;" >
+						<i class="fa fa-check-circle"></i> Your private key will never send to the server, the sign progress is 
+						only running in client.  
+					</div>
+					
+					<label for="usr">Raw Tran:</label>
+                    <textarea class="form-control" placeholder="textarea" id ="raw_tran" rows="6" readonly="readonly"></textarea>
+					<!-- <label for="usr">certIdList:</label>
+					<input type="text" class="form-control" placeholder="certIdList" id ="certIdList"> -->
+					
+					<!-- <label for="usr">Tran Hash:</label>
+					<input type="text" class="form-control" placeholder="tran_hash" id ="tran_hash" readonly="readonly"> -->
+					<label for="usr">Merkle Root:</label>
+					<input type="text" class="form-control" placeholder="merkleRoot" id ="merkleRoot" readonly="readonly">
+					<!-- <label for="usr">Sign Number:</label>
+					<input type="text" class="form-control" placeholder="sign_number" id ="sign_number" readonly="readonly"> -->
+					<label for="usr">Certs_number:</label>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="certs_number" id ="certs_number" readonly="readonly">
+						<span class="input-group-btn">
+							<button class="btn btn-default" id = "showCerts" type="button">Show</button>
+						</span>
+					</div>
+					
+				  <br>
+				  <div class="content-table table-dislay" style = "display: none">
+                           <table data-toggle="table" class="table table-striped">
+                               <thead>
+                               <tr>
+                                   <th>Recipient</th>
+                                   <th>Issued Time</th>
+                                   <th>Issuer</th>
+                               </tr>
+                               </thead>
+                               <tbody class="sbcon">
+                               <tr>
+                                   <td>
+                                       <div class="loadingsb" style="padding:50px 0 0px 30px;">
+                                           <div class="loader">
+                                               <div class="loader-inner ball-scale-multiple">
+                                                   <div></div>
+                                                   <div></div>
+                                                   <div></div>
+                                                   <p class="load" style="margin-left: 100px !important;padding-top:15px !important;font-size: 18px;">Loading</p>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </td>
+                                   <td></td>
+                                   <td></td>
+                               </tr>
+                               </tbody>
+                           </table>
+                            <input type="hidden" class="current-page" value="0" />
+                        <div name="page" id="pages"></div>
+                       </div>
+					
+					
+					<!-- <label for="usr">Sign State:</label> -->
+					<!-- <input type="text" class="form-control" placeholder="sign_state" id ="sign_state" readonly="readonly"> -->
+					
+					<br>
+					<input type="hidden" id="id">
+					<input type="hidden" id="broadcast_state">
+					<input type="hidden" id="serialize_state">
+					<input type="hidden" id="sign_state">
+					<input type="hidden" id="sign_number">
+					<input type="hidden" id="tran_hash">
+					
+	
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" onclick="signTrsanction()">Sign</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- 修改模态框 -->
+	<div class="modal fade modal-add" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Transaction Script</h4>
+				</div>
+				<div class="modal-body">
+					
+					<div class="verifyData" id="verifyTransactionData">
+							<div><b>Transaction Size</b>: <span class="transactionSize"></span></div>
+							<div><b>Lock time</b>: <span class="transactionLockTime"></span></div>
+						<div><b>Version</b>: <span class="transactionVersion"></span></div>
+
+							<hr>
+								<div class="row">
+									<div class="col-md-7">
+										<label>Inputs</label>
+										<table class="table table-hover ins">
+											<thead>
+											<tr style="font-weight:bold;">
+												<td>Txid</td><td>Nonce</abbr></td><td>MultiSig</td><td>Signed</td>
+											</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-md-5">
+										<label>Outputs</label>
+										<table class="table table-hover outs">
+											<thead>
+											<tr style="font-weight:bold;">
+												<td>Bitcoin Address</td><td>Amount</td>
+											</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+
+
+
+						</div>
+	
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div th:replace="fragments/footer :: footer"></div>
+
+
+</body>
+</html>

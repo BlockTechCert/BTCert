@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/header :: header-css"></head>	
+<body>
+   <span style = "display:none" id="student_name" th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+
+   <div th:replace="fragments/header :: header"/></div>
+    
+    
+        <div class="content">
+        <div class="wrap wrap-background">
+            <div class="row-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="column-content column-main column-blue">
+                            <div class="row content-header">
+                                <h4 class="page-title"><i class="fa fa-history" aria-hidden="true"></i> Issued Certificate</h4>
+                                <ol class="breadcrumb p-0 m-0">
+                                    <li>
+                                        <a class="page-title-copy" href="#">Issued Certificate</a>
+                                    </li>
+                                    <li class="active">
+                                        Home
+                                    </li>
+                                </ol>
+                                <div class="clearfix"></div>
+                            </div>
+
+                           <!--  <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Applicant ID</th>
+                                        <th>Create Time</th>
+                                        <th>Recipient Name</th>
+                                        <th>State</th>
+                                        <th>Issuer Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody class="sbcon">
+                                   
+                                </tbody>
+                            </table>
+                            <div name="page" id="pages">
+                                <ul class="pagination">
+                                    <li><a href="#">&laquo;</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">&raquo;</a></li>
+                                </ul>
+                            </div> -->
+                            
+                            <div class="panel-body" style="padding-bottom:0px;">
+					              <!--  <div class="panel panel-default">
+					                   <div class="panel-heading">查询条件</div>
+					                   <div class="panel-body">
+					                       <form id="formSearch" class="form-horizontal">
+					                           <div class="form-group" style="margin-top:15px">
+					                               <label class="control-label col-sm-1" for="txt_search_departmentname">部门名称</label>
+					                               <div class="col-sm-3">
+					                                   <input type="text" class="form-control" id="txt_search_departmentname">
+					                               </div>
+					                               <label class="control-label col-sm-1" for="txt_search_statu">状态</label>
+					                               <div class="col-sm-3">
+					                                   <input type="text" class="form-control" id="txt_search_statu">
+					                               </div>
+					                               <div class="col-sm-4" style="text-align:left;">
+					                                   <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary">查询</button>
+					                               </div>
+					                           </div>
+					                       </form>
+					                   </div>
+					               </div> -->
+					               <div id="toolbar" class="btn-group">
+					                   <button id="btn_add" type="button" class="btn btn-default" onclick="showDetails()">
+					                       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>showDetails
+					                   </button>
+					                   <button id="btn_edit" type="button" class="btn btn-default" onclick="downloadCerts()">
+					                       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>downloadCerts
+					                   </button>
+					                   <button id="btn_delete" type="button" class="btn btn-default" onclick="generateQr()">
+					                       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>generateQR
+					                   </button>
+					               </div>
+					               <table id="table-list"></table>
+					         </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+	<!-- qrcode modal -->
+	<div class="modal fade modal-edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title">qrcode</h4>
+			</div>
+
+			<div class="modal-body" align="center">
+				<div id="qrcode"></div>
+				<canvas width="100" height="100" style="display: none;" id = "downcavas"></canvas>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default"  onclick = "downloadQr()"> Download</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" id="qrCodeClose">Close</button>
+			</div>
+		</div>
+		</div>
+	</div>
+	
+	 <!-- 修改模态框 -->
+ 	<div class="modal fade modal-details" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Certificate Details</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- <div id="alert-message-success" class="alert alert-success" role="alert" >
+                        <i class="fa fa-check-circle"></i> Your request has been succesfully updated
+                    </div> -->
+                    <div  id="certsInfo">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id = "toggle-level-btn" onclick = "toggleJson()">Toggle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

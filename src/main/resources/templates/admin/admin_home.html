@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title> Btcert Admin</title>
+
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/admin/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="/admin/css/animate.css" rel="stylesheet">
+    <link href="/admin/css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<div id="wrapper">
+    <!--左侧导航开始-->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="nav-close"><i class="fa fa-times-circle"></i>
+        </div>
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs" style="font-size:20px;">
+                                        <i class="fa fa-area-chart"></i>
+                                        <strong class="font-bold">BTCert</strong>
+                                    </span>
+                                </span>
+                        </a>
+                    </div>
+                    <div class="logo-element">BTCert
+                    </div>
+                </li>
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope">Overview</span>
+                </li>
+                <li>
+                    <a class="J_menuItem" href="admin_index">
+                        <i class="fa fa-home"></i>
+                        <span class="nav-label">Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope">User</span>
+                </li>
+                <li>
+                    <a class="J_menuItem" href="registered_user_manage">
+                        <i class="fa fa-user"></i>
+                        <span class="nav-label">Registered User</span>
+                    </a>
+                </li>
+
+
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope">Configure</span>
+                </li>
+
+                <li>
+                    <a class="J_menuItem" href="stu_revoInfo_manage">
+                        <i class="fa fa-graduation-cap"></i>
+                        <span class="nav-label">Student RevoInfo </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="J_menuItem" href="sch_Identity_manage">
+                        <i class="fa fa-university "></i>
+                        <span class="nav-label">School Identity</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="J_menuItem" href="sch_config_manage">
+                        <i class="fa fa-cog"></i>
+                        <span class="nav-label">School Configure</span>
+                    </a>
+                </li>
+
+
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope">Transaction</span>
+                </li>
+
+                <li>
+                    <a class="J_menuItem" href="transaction_address">
+                        <i class="fa fa-btc"></i>
+                        <span class="nav-label">Transaction address</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="J_menuItem" href="unbroadcasted_transaction_list">
+                        <i class="fa fa-credit-card "></i>
+                        <span class="nav-label">UnBroadcasted</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="J_menuItem" href="broadcasted_transaction_list">
+                        <i class="fa fa-bullhorn"></i>
+                        <span class="nav-label">Broadcasted</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="J_menuItem" href="latest_confirmed_transaction">
+                        <i class="fa fa-check-square"></i>
+                        <span class="nav-label">Latest Confirmed</span>
+                    </a>
+                </li>
+
+
+
+            </ul>
+        </div>
+    </nav>
+    <!--左侧导航结束-->
+    <!--右侧部分开始-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-info " href="#"><i class="fa fa-bars"></i> </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="/logout">
+                                    <div>
+                                        <i class="fa fa-log-out"></i> Log out
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row J_mainContent" id="content-main">
+            <iframe id="J_iframe" width="100%" height="100%" src="admin_index" frameborder="0" data-id="admin_index" seamless></iframe>
+
+        </div>
+    </div>
+    <!--右侧部分结束-->
+</div>
+
+<!-- 全局js -->
+<script src="/admin/js/jquery.min.js?v=2.1.4"></script>
+<script src="/admin/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="/admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/admin/js/plugins/layer/layer.min.js"></script>
+<script src="/admin/js/hAdmin.js?v=4.1.0"></script>
+
+<!-- 自定义js -->
+<script type="text/javascript" src="/admin/js/index.js"></script>
+
+</body>
+
+</html>

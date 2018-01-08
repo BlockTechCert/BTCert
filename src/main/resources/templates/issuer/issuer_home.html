@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="fragments/header :: header-css"></head>	
+<body>
+<div th:replace="fragments/header :: header"/></div>
+
+<div class="content">
+	<div class="wrap wrap-background">
+		<div class="row-content">
+		<div class="container" >
+		<div class="column-content column-main">
+		
+		<div class="row content-header">
+			<h4 class="page-title">Welcome, <span id="student-name" th:inline="text">[[${#httpServletRequest.remoteUser}]]</span></h4>
+			<div class="breadcrumb p-0 m-0">
+			</div>
+			<div class="clearfix"></div>
+		</div>
+			<div id="wizard">
+				<h1><span class="fa fa-files-o"></span> Merge Certificates</h1>
+				<div class="step-content">
+					<p class="text-center m-t-md">
+						<h3 class="underline"><a href ="issuer/unmerged_certificate_list">Start Merge</a></h3>
+					<p>Your certificate will merge in one transaction, the working principle is shown as following picture.</p>
+					<img alt="" src="../images/tree.png" width="800">
+				</div>
+
+				<h1><span class="fa fa-link"></span> Start Serialize</h1>
+				<div class="step-content">
+					<div class="text-center m-t-md">
+						<h3 class="underline"><a href ="issuer/unserialized_transaction_list">Start Serialize</a></h3>
+						The transaction needs to be serialized to a standard Bitcoin formatter.
+						<img alt="" src="../images/serialize.png" width="800">
+					</div>
+				</div>
+
+				<h1><span class="fa fa-pencil"></span> Start Serialize</h1>
+				<div class="step-content">
+					<div class="text-center m-t-md">
+						<h3 class="underline"><a href ="issuer/unbroadcasted_transaction_list">Start Sign</a></h3>
+						Every signer has a private key and the raw transaction string needs to signed using the private key
+						before broadcast. The sign algorithm is shown as follow.
+						<img alt="" src="../images/multiSig.png" width="800">
+					</div>
+				</div>
+
+				<h1><span class="fa fa-refresh"></span> Start Check</h1>
+				<div class="step-content">
+					<div class="text-center m-t-md">
+						<h3 class="underline"><a href ="issuer/unbroadcasted_transaction_list">Start Check</a></h3>
+						The raw transaction string should check carefully before send to Blockchain.
+						<img alt="" src="../images/serialize.png" width="800">
+					</div>
+				</div>
+
+				<h1><span class="fa fa-cloud-upload"></span> Broadcast Transaction</h1>
+				<div class="step-content">
+					<div class="text-center m-t-md">
+						<h3 class="underline"><a href ="issuer/unbroadcasted_transaction_list">Start Broadcast</a></h3>
+						The raw transaction string with the Merkle tree root will broadcast to the Blockchain.
+						<img alt="" src="../images/broadcast.png" width="800">
+					</div>
+				</div>
+
+				<h1><span class="fa fa-star"></span> Confirm Transaction</h1>
+				<div class="step-content">
+					<div class="text-center m-t-md">
+							<h3 class="underline">Instructions</h3>
+							This is the latest 10 transaction which have been confirmed by the Blockchain.
+							<table class="table table-striped table-hover">
+								<thead>
+								<tr>
+									<th>Transaction</th>
+									<th>Time_utc</th>
+									<th>Confirmations</th>
+									<th>Amount</th>
+								</tr>
+								</thead>
+								<tbody class="sbcon">
+								<tr><td>
+									<div class="loadingsb" style="padding:50px 0 0px 30px;">
+										<div class="loader">
+											<div class="loader-inner ball-scale-multiple">
+												<div></div>
+												<div></div>
+												<div></div>
+												<p class="load" style="margin-left: 100px !important;padding-top:15px !important;font-size: 18px;">Loading</p>
+											</div>
+										</div>
+									</div>
+								</td><td></td><td></td><td></td><td></td><td></td>
+								</tr>
+								</tbody>
+							</table>
+				</div>
+				</div>
+
+			</div>
+
+		  
+		</div>
+		</div>
+	</div>
+</div>
+
+
+    <!-- 修改模态框 -->
+	<div class="modal fade modal-edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Sign the Transaction</h4>
+				</div>
+				<div class="modal-body">
+					<div id="alert-message-success" class="alert alert-success" role="alert"  style="display:none;">
+						<i class="fa fa-check-circle"></i> Your request has been succesfully updated
+					</div>
+					<div id="alert-message-fail" class="alert alert-danger" role="alert" style="display:none;">
+						<i class="fa fa-times-circle"></i> Sorry, please check your form
+					</div>
+					<label for="usr">Private Key:</label>
+					<input type="text" class="form-control" placeholder="privatekey" id ="privatekey">
+					<label for="usr">Raw Tran:</label>
+                    <textarea class="form-control" placeholder="textarea" id ="raw_tran" rows="4"></textarea>
+					<label for="usr">certIdList:</label>
+					<input type="text" class="form-control" placeholder="certIdList" id ="certIdList">
+					<label for="usr">Merkle Root:</label>
+					<input type="text" class="form-control" placeholder="merkleRoot" id ="merkleRoot">
+					<label for="usr">Tran Hash:</label>
+					<input type="text" class="form-control" placeholder="tran_hash" id ="tran_hash">
+					<label for="usr">Sign Number:</label>
+					<input type="text" class="form-control" placeholder="sign_number" id ="sign_number">
+					<label for="usr">Sign State:</label>
+					<input type="text" class="form-control" placeholder="sign_state" id ="sign_state">
+					<label for="usr">Broadcast State:</label>
+					<input type="text" class="form-control" placeholder="broadcast_state" id ="broadcast_state">
+					<br>
+					<input type="hidden" id="id">
+					<input type="hidden" id="broadcast_state">
+					<!-- Hidden Domain -->
+					<!-- <input type="hidden" id="apply_note">
+					<input type="hidden" id="apply_state">
+					<input type="hidden" id="apply_time">
+					<input type="hidden" id="handle_time">
+					
+					<input type="hidden" id="user_id"> -->
+	
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" onclick="signTrsanction()">sign</button>
+					<button type="button" class="btn btn-primary" onclick="sendTrsanction()">Send</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+<!-- Steps -->
+<script src="/jslib/jquery.steps.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#wizard").steps();
+    });
+</script>
+</body>
+</html>

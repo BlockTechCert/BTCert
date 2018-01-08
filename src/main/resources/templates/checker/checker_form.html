@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/header :: header-css"></head>	
+<body>
+
+	<div th:replace="fragments/header :: header"/></div>
+	
+    <div class="content">
+        <div class="wrap wrap-background">
+            <div class="row-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="column-content column-main">
+                            <div class="row content-header">
+                                <h4 class="page-title"><i class="fa fa-user" aria-hidden="true"></i>  Check the Certificate</h4>
+                                <ol class="breadcrumb p-0 m-0">
+                                    <li>
+                                        <a class="page-title-copy" href="#">Check the Certificate</a>
+                                    </li>
+                                    <li class="active">
+                                        Home
+                                    </li>
+                                </ol>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="panel">
+                            
+                            
+                            	
+				                <ul class="nav nav-tabs" id="myTab">
+								  <li class="active"><a href="#home">Student Application Information</a></li>
+								  <li><a href="#profile">Check Extended Information</a></li>
+								  <li><a href="#messages">Check Opinion</a></li>
+								</ul>
+								
+								<div class="tab-content">
+								  <div class="tab-pane active" id="home">
+								  
+								  	<div class="panel-body">
+	                                    <div class="form-group">
+	                                    <label for="given_name">given name</label>
+	                                     <input type="text" class="form-control" placeholder="given name" id ="given_name" readonly>
+	                                	</div>
+	                                    
+	                                    <div class="form-group">
+	                                    <label for="family_name">family name</label>
+	                                    <input type="text" class="form-control" placeholder="family name" id ="family_name" readonly>
+	                                    </div>
+	                                    
+	                                    <div class="form-group">
+	                                    <label for="birthday">birthday</label>
+	                                    <input type="text" class="form-control" placeholder="birthday" id ="birthday" readonly>
+	                                    </div>
+	                                     
+	                                    <div class="form-group">
+	                                    <label for="apply_type">apply_type</label>
+	                                    <select class="form-control" id = "apply_type" readonly>
+	                                        <option value="Certificate">Certificate</option>
+	                                        <option value="Transcript">Transcript</option>
+	                                    </select>
+	                                    </div>
+	                                    
+	                                    <div class="form-group">
+	                                    <label for="identity_type">identity_type</label>
+	                                    <select class="form-control" id = "identity_type" readonly>
+	                                        <option value="email">email</option>
+	                                        <option value="studentId">studentId</option>
+	                                    </select>
+	                                    </div>
+	                                   
+	                                    <div class="form-group">
+	                                    <label for="identity">identity</label>
+	                                    <input type="text" class="form-control" placeholder="identity" id ="identity" readonly>
+	                                    </div>
+	                                    <!-- <input type="file" id="file" title="Search for a file to add 3" class="btn-primar"> -->
+	                                    <input type="hidden"  class="form-control" id="file_hash" readonly >
+										<input type="hidden" id ="apply_state" value = "apply_state">
+										<input type="hidden" id ="apply_time" value = "apply_time">
+										<input type="hidden" id ="handle_time" value = "handle_time">
+										<input type="hidden" id ="id" value = "id">
+										<input type="hidden" id ="user_id" value = "user_id">
+                                	</div>
+								  </div>
+								  
+								  
+								  <div class="tab-pane" id="profile">
+								  
+									 <div class="panel-body">
+	                                	<div class="form-group">
+	                                    <label for="badgeDescription">badgeDescription</label>
+	                               		<input type="text" class="form-control" placeholder="badgeDescription" id ="badgeDescription">
+	                                    </div>
+	                                    <!-- <input type="text" class="form-control" placeholder="badgeName" id ="badgeName">
+	                                    <br> -->
+	                                    
+	                                    <div class="form-group">
+	                                    <label for="badgeName">badgeName</label>
+	                                    <select class="form-control" id ="badgeName">
+								      		<option>Bachelor of Arts</option>
+				　　                                           <option>Bachelor of Architecture</option>
+				                            <option>Bachelor of Arts in Education</option>
+										　　<option>Bachelor of Business Administration</option>
+										　　<option>Bachelor of Arts in Social Work</option>
+										　　<option>Bachelor of Education</option>
+										　　<option>Bachelor of Fine Arts</option>
+										　　<option>Bachelor of General Studies</option>
+										　　<option>Bachelor of Liberal Studies</option>
+										　　<option>Bachelor of Engineering</option>
+										　　<option>Bachelor of Music</option>
+										　　<option>Bachelor of Music Education</option>
+										　　<option>Bachelor of Nursing</option>
+										　　<option>Bachelor of Professional Studies</option>
+										　　<option>Bachelor of Science in Business Administration</option>
+										　　<option>Bachelor of Science</option>
+										　　<option>Bachelor of Science in Business</option>
+										　　<option>Bachelor of Science in Education</option>
+										　　<option>Bachelor of Science in Engineering</option>
+										　　<option>Bachelor of Science in Medicine</option>
+										　　<option>Bachelor of Science in Medical Technology</option>
+										　　<option>Bachelor of Science in Nursing</option>
+										　　<option>Bachelor of Science in Social Work</option>
+										　　<option>Bachelor of Science in Technology</option>
+										　　<option>Bachelor in Social Work</option>
+										　　<option>Bachelor of Technology</option>
+										　　<option>Bachelor of Law</option>
+										　　<option>Master of Arts</option>
+										　　<option>Master of Accounting</option>
+										　　<option>Master of Arts in Education</option>
+										　　<option>Master of Architecture</option>
+										　　<option>Master of Arts in Teaching</option>
+										　　<option>Master of Business Administration</option>
+										　　<option>Master of Civil Engineering</option>
+										　　<option>Master of Chemical Engineering</option>
+										　　<option>Master of Criminal Justice</option>
+										　　<option>Master of Divinity</option>
+										　　<option>Master of Engineering</option>
+										　　<option>Master of Education</option>
+										　　<option>Master of Electrical Engineering</option>
+										　　<option>Master of Fine Arts</option>
+										　　<option>Master of Law</option>
+										　　<option>Master of Library Science</option>
+										　　<option>Master of Music</option>
+										　　<option>Master of Music Education</option>
+										　　<option>Master of Nursing</option>
+										　　<option>Master of Public Administration</option>
+										　　<option>Master of Psychology</option>
+										　　<option>Master of Science</option>
+										　　<option>Master of Science in Education</option>
+										　　<option>Master of Science in Electrical Engineering</option>
+										　　<option>Master of Science in Library Science</option>
+										　   <option>Master of Science in M??edical Technology</option>
+										　　<option>Master of Science in Nursing</option>
+										　　<option>Master of Science in Social Work</option>
+										　　<option>Master of Social Work</option>
+										　　<option>Doctor of Arts</option>
+										　　<option>Doctor of Dental Science</option>
+										　　<option>Doctor of Engineering</option>
+										　　<option>Doctor of Education</option>
+										　　<option>Doctor of Musical Arts</option>
+										　　<option>Doctor of Osteopathy</option>
+										　　<option>Doctor of Social Science</option>
+										　　<option>Doctor of Veterinary Medicine</option>
+										　　<option>Doctor of Jurisprudence</option>
+										　　<option>Doctor of Judicial Science</option>
+										　　<option>Doctor of Business Administration</option>
+				　　							<option>Doctor of Accountancy</option>
+								      		<option></option>
+								        </select>
+	                                    </div>
+	
+										<div class="form-group">
+	                                    <label for="created">createdTime</label>                                    
+	                                    <input type="text" class="form-control" id="created" value="2017-01-01">
+	                                    </div>
+	                                    
+	                                    <div class="form-group">
+	                                    <label for="expires">expiresTime</label> 
+	                                    <input type="text" class="form-control" placeholder="expires" id ="expires" value="2100-01-01">
+	                                    </div>
+	                                    
+	                                    <div class="form-group">
+	                                    <label for="badgeImage">badgeImage</label> 
+	                                    <input type="text" class="form-control" placeholder="badgeImage" id ="badgeImage">
+	                                    </div>
+	                                    
+	                                    <input type="hidden" id ="badgeType" value = "Certifacte">
+	                                    <input type="hidden" id ="badgeId" value = "https://example.org/robotics-badge.json">
+	                                    <input type="hidden" id ="badgeClass" value = "badgeClass">
+	                                    <input type="hidden" id ="id" value = "id">
+	                                    
+	                                    <div class="form-group">
+	                                    <label for="Standard">Standard</label> 
+	                                    <label class="fancy-checkbox">
+	                                        <input type="checkbox"  name = "standard" checked="checked" value = "https://w3id.org/openbadges/v2">
+	                                        <span>Openbadges</span>
+	                                    </label>
+	                                    <label class="fancy-checkbox">
+	                                        <input type="checkbox" name = "standard" checked="checked" value = "https://w3id.org/blockcerts/v2">
+	                                        <span>Blockcerts</span>
+	                                    </label>
+	                                    <label class="fancy-checkbox">
+	                                        <input type="checkbox" name = "standard" checked="checked" value = "https://blocktechcert.github.io/www/json/context.json">
+	                                        <span>Bham_Standard</span>
+	                                    </label>
+	                                    </div>
+	                                </div>		
+								  </div>
+								  <div class="tab-pane" id="messages">
+								  
+								  	<div class="panel-body">
+                                    <textarea class="form-control" placeholder="Opinion" rows="4" id ="apply_note"></textarea>
+                                    <br>
+                               		</div>
+								  </div>
+								</div>
+                                
+                                <div class="button-right">
+                                    <button type="button" class="btn btn-success" onclick="checkStuConf('passed')">Approved</button>
+                                    <button type="button" class="btn btn-danger" onclick="checkStuConf('rejected')">Rejected</button>
+                                </div>
+                                    
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+	
+	    <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

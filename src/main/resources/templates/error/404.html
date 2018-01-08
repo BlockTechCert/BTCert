@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header-css"></head>	
+<body>
+<div class="header">
+	<div class="container">
+		<a class="logo" href="" ><img src="images/logo.png"></a>
+
+		<div class="header-navigation pull-right font-transform-inherit">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/">Home</a></li>
+					<li><a href="/demo">Demo</a></li>
+				</ul>
+			</div>
+
+
+		</div>
+
+	</div>
+
+</div>
+<div class="content">
+	<div class="wrap wrap-background">
+		<div class="row-content">
+			<div class="container">
+				<div class="starter-template" style = "color:red;margin:0 auto;  width:600px; height:200px; ">
+					<h1>404 - We can not find the resource!</h1>
+					<div th:inline="text" style = "color:white">return to <a href ="/">home</a></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div th:replace="fragments/footer :: footer"></div>
+
+<script  src="jslib/jquery-3.2.1.min.js"></script>
+<script src="jslib/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

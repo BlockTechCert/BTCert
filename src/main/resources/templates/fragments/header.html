@@ -1,0 +1,252 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header-css">
+
+		<meta charset="utf-8"></meta>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+		<title>BTCert</title>
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+		<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+	
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+	    <link rel="stylesheet" href="../css/style.css">
+	    <link rel="stylesheet" href="../css/loader.css">
+	    <link rel="stylesheet" href="../css/sweetalert.css">
+	    <link rel="stylesheet" href="../css/bootstrap-table.min.css">
+	    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <link rel="stylesheet" href="../css/shieldui.all.min.css">
+	    <link rel="stylesheet" href="../css/jquery.jsonview.css">
+	    <link rel="stylesheet" href="../css/sweetalert.css"></link>
+		<link rel="stylesheet" href="../css/pikaday.css"></link>
+		<link rel="stylesheet" href="../css/fileinput.min.css"></link>
+		<link href="/css/jquery.steps.css" rel="stylesheet">
+
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		
+</head>
+<body>
+<div th:fragment="header">
+
+<!-- login -->
+<div th:if="${#httpServletRequest.requestURL.toString().contains('login')}">
+		<div class="header">
+		<div class="container">
+			<a class="logo" href="" ><img src="/images/BTCert.png" /></a>
+			<div class="header-navigation pull-right font-transform-inherit">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/">Home</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log in<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/student/student_home">Student</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/checker/checker_home">Checker</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/issuer/issuer_home">Issuer</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/admin/admin_home">Admin</a></li>
+							</ul>
+						</li>
+						<li><a href="/demo">Demo</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- home -->
+<div th:if="${#httpServletRequest.requestURL.toString().contains('/home')}">
+		<div class="header">
+		<div class="container">
+			<a class="logo" href="" ><img src="/images/BTCert.png" /></a>
+			<div class="header-navigation pull-right font-transform-inherit">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/">Home</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log in<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/student/student_home">Student</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/checker/checker_home">Checker</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/issuer/issuer_home">Issuer</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/admin/admin_home">Admin</a></li>
+							</ul>
+						</li>
+						<li><a href="/demo">Demo</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- student -->
+<div th:if="${#httpServletRequest.requestURL.toString().contains('student')}">
+		<div class="header">
+			<div class="container">
+				<a class="logo" href="" ><img src="/images/BTCert.png" /></a>
+			<div class="header-navigation pull-right font-transform-inherit">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+	                    <li><a href="/">Home</a></li>
+	                    <li class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Application <span class="caret"></span></a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="/student/apply_form">Apply a certificate</a></li>
+	                            <li><a href="/student/apply_history">Applicant History</a></li>
+	                            <li role="separator" class="divider"></li>
+	                        </ul>
+	                    </li>
+	                    <li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Certificate <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/student/issued_certificate">Issued Certificate</a></li>
+								<li><a href="/student/revoked_certificate">Revoked Certificate</a></li>
+								<li role="separator" class="divider"></li>
+							</ul>
+						</li>
+	                    <li><a href="/logout">Log out</a></li>
+	                </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+
+
+<!-- checker -->
+<div th:if="${#httpServletRequest.requestURL.toString().contains('checker')}">
+		<div class="header">
+			<div class="container">
+				<a class="logo" href="" ><img src="/images/BTCert.png" /></a>
+				<div class="header-navigation pull-right font-transform-inherit">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="/">Home</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Application <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="/checker/unchecked_list">UnChecked List</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="/checker/checked_history_list">Checked History</a></li>
+								</ul>
+							</li>
+							
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Certificate <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="/checker/unmerged_certificate_list">UnMerged Certificate</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="/checker/merged_certificate_list">Merged Certificate</a></li>
+								</ul>
+						    </li>
+						    
+							<li><a href="/logout">Log out</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+
+
+<!-- issuer -->
+<div th:if="${#httpServletRequest.requestURL.toString().contains('issuer')}">
+	  <div class="header">
+		<div class="container">
+			<a class="logo" href="" ><img src="/images/BTCert.png" /></a>
+			<div class="header-navigation pull-right font-transform-inherit">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/">Home</a></li>
+						<!-- <li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Certificate <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/issuer/unmerged_certificate_list">UnMerged Certificate</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/issuer/merged_certificate_list">Merged Certificate</a></li>
+							</ul>
+						</li> -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transaction <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+							    <li><a href="/issuer/unserialized_transaction_list">UnSerialized Transaction</a></li>
+	   							<li role="separator" class="divider"></li>
+								<li><a href="/issuer/unsigned_transaction_list">UnSigned Transaction</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/issuer/signed_transaction_list">Signed Transaction</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Revocation <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+							    <li><a href="/issuer/unconfirmed_revocation_list">Unconfirmed Revocation</a></li>
+	   							<li role="separator" class="divider"></li>
+								<li><a href="/issuer/confirmed_revocation_list">Confirmed Revocation</a></li>
+							</ul>
+						</li>
+						<li><a href="/logout">Log out</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+  
+</div>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>BTCert</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<!-- Bootstrap 4.0 alpha -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="css/bootstrap.min.css" />
+	<!-- Own Theme style -->
+	<link rel="stylesheet"  th:href="@{/css/style.css}" href="css/style.css" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+	<!-- plugins -->
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	
+	<style type="text/css">
+	            
+	/*Vertical Steps*/
+	.list-group.vertical-steps{
+	  padding-left:10px;
+	}
+	.list-group.vertical-steps .list-group-item{
+	  border:none;
+	  border-left:3px solid #ece5dd;
+	  box-sizing:border-box;
+	  border-radius:0;
+	  counter-increment: step-counter;
+	  padding-left:20px;
+	  padding-right:0px;
+	  padding-bottom:20px;  
+	  padding-top:0px;
+	}
+	.list-group.vertical-steps .list-group-item.active{
+	  background-color:transparent;
+	  color:inherit;
+	}
+	.list-group.vertical-steps .list-group-item:last-child{
+	  border-left:3px solid transparent;
+	  padding-bottom:0;
+	}
+	.list-group.vertical-steps .list-group-item::before {
+	  border-radius: 50%;
+	  background-color:#ece5dd;
+	  color:#555;
+	  content: counter(step-counter);
+	  display:inline-block;
+	  float:left;
+	  height:25px;
+	  line-height:25px;
+	  margin-left:-35px;
+	  text-align:center;  
+	  width:25px;  
+	}
+	.list-group.vertical-steps .list-group-item span,
+	.list-group.vertical-steps .list-group-item a{
+	  display:block;
+	  overflow:hidden;
+	  padding-top:2px;
+	}
+	/*Active/ Completed States*/
+	.list-group.vertical-steps .list-group-item.active::before{
+	  background-color:#0052c2;
+	  color:#fff;
+	}
+	.list-group.vertical-steps .list-group-item.completed{
+	  border-left:3px solid #0052c2;
+	}
+	.list-group.vertical-steps .list-group-item.completed::before{
+	  background-color:#0052c2;
+	  color:#fff;
+	}
+	.list-group.vertical-steps .list-group-item.completed:last-child{
+	  border-left:3px solid transparent;
+	}
+	
+	.work-background {
+	  background: url(../images/workflow.png);
+	  background-size: 100% 100%; 
+	  height: 400px
+	}
+                        
+	
+	</style>
+</head>
+<body>
+<div class="header">
+	<div class="container">
+		<a class="logo" href="" ><img src="images/logo.png"></a>
+
+		<div class="header-navigation pull-right font-transform-inherit">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/">Home</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log in<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/student">Student</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="/checker">Checker</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="/issuer">Issuer</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="admin">Admin</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Demo</a></li>
+				</ul>
+			</div>
+
+
+		</div>
+
+	</div>
+
+</div>
+<div class="content">
+	
+	<div class="wrap wrap-background">
+        <div class="row-content">
+            <div class="container">
+                <div class="row">
+                    <div class="column-content column-main column-blue">
+                        <div class="row content-header">
+                            <h4 class="page-title"><i class="fa fa-history" aria-hidden="true"></i>How does the BTCert works</h4>
+                        </div>
+                        
+                         <h4>Certificates Publish stage (Intranet)</h4>
+                         <div class="content-table">
+	                        <ol class="list-group vertical-steps " style = "background-color:#f5f5f5;border-radius:4px;padding:8px 15px">
+							  <li class="list-group-item completed"><span>Student apply new certificate with fill in the basic information </span></li>
+							  <li class="list-group-item completed"><span>Checker compare and approval the applicant with shcool's record  </span></li>
+							  <li class="list-group-item completed"><span>Issuer merge the certificates to the blockchain transaction and sign it</span></li>
+							  <li class="list-group-item completed"><span>Admin check the transaction and broadcast it to the peer to peer network</span></li>
+							</ol> 
+                        </div>
+                        
+                        <h4>Certificates Verify stage (Internet)</h4>
+                        <div class="content-table">
+	                        <ol class="list-group vertical-steps " style = "background-color:#f5f5f5;border-radius:4px;padding:8px 15px">
+	                          <li class="list-group-item"><span>Student provide the certificate to the third party(company,school).</span></li>
+							  <li class="list-group-item"><span>The third party can check the certificate's integrity and authenticity with transparent protocol</span><a href = "/verify">Start Verify</a></li>
+							</ol> 
+                        </div>
+                        
+                         
+                        <h4>Certificates work flow</h4>
+                        <div class="work-background"></div>
+                        
+                        <div class="row content-header">
+                            <h4 class="page-title"><i class="fa fa-history" aria-hidden="true"></i>Demo User Information</h4>
+                        </div>
+                        <div class="content-table table-recent-apply">
+                            <table data-toggle="table" class="table table-striped">
+                                <thead>
+                                <tr>
+                               		<th>Role_Student</th>
+                                    <th>UserName</th>
+                                    <th>Password</th>
+                                </tr>
+                                </thead>
+                                <tbody class="sbcon">
+                                <tr>
+                                 	<td></td>
+                                    <td>student@bham.ac.uk</td>
+                                    <td>student</td>
+                                </tr>
+                                <tr>
+                                 	<td></td>
+                                    <td>student1@bham.ac.uk</td>
+                                    <td>student1</td>
+                                </tr>
+                                <tr>
+                                 	<td></td>
+                                    <td>student2@bham.ac.uk</td>
+                                    <td>student2</td>
+                                </tr>
+                                <tr>
+                                 	<td></td>
+                                    <td>student3@bham.ac.uk</td>
+                                    <td>student3</td>
+                                </tr>
+                                
+                                <tr>
+                               		<th>Role_Checker</th>
+                                    <th>UserName</th>
+                                    <th>Password</th>
+                                </tr>
+                                
+                                <tr>
+                                 	<td></td>
+                                    <td>checker@bham.ac.uk</td>
+                                    <td>checker</td>
+                                </tr>
+                                
+                                 <tr>
+                                 	<td></td>
+                                    <td>checker1@bham.ac.uk</td>
+                                    <td>checker</td>
+                                </tr>
+                                
+                                <tr>
+                               		<th>Role_Issuer</th>
+                                    <th>UserName</th>
+                                    <th>Password</th>
+                                </tr>
+                                
+                                <tr>
+                                 	<td></td>
+                                    <td>issuer1@bham.ac.uk</td>
+                                    <td>issuer1</td>
+                                </tr>
+                                
+                                <tr>
+                                 	<td></td>
+                                    <td>issuer2@bham.ac.uk</td>
+                                    <td>issuer2</td>
+                                </tr>
+                                
+                                <tr>
+                                 	<td></td>
+                                    <td>issuer3@bham.ac.uk</td>
+                                    <td>issuer3</td>
+                                </tr>
+                                
+                                
+                                <tr>
+                               		<th>Role_Admin</th>
+                                    <th>UserName</th>
+                                    <th>Password</th>
+                                </tr>
+                                
+                                <tr>
+                                 	<td></td>
+                                    <td>admin@bham.ac.uk</td>
+                                    <td>admin</td>
+                                </tr>
+                                
+                                </tbody>
+                            </table>
+                           
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	
+</div>
+
+<div class="footer">
+	<div class="container">
+		<div class="row row-p	b-md">
+			<div class="col-md-4">
+				<div class="gtco-widget">
+					<h3 data-lang="footer-about-us">ABOUT</h3>
+					<p data-lang="footer-about-us-des" style = "color:#ddd">
+						This system authenticates academic credentials by means of a digital
+						receipt that allows immediate verification by third parties.
+												BTCerts uses <a href="https://en.wikipedia.org/wiki/Blockchain"
+						style="color:#996671">blockchain</a> and
+												<a href="https://en.wikipedia.org/wiki/Cryptography"
+						style="color:#996671">cryptographic</a> technologies to create a
+												certification infrastructure based on the <a
+						href="https://www.blockcerts.org/" style="color:#996671">blockcerts</a>
+						standard.
+					</p>
+				</div>
+			</div>
+			<div class="col-md-4 col-md-push-1">
+				<div class="gtco-widget">
+					<h3 data-lang="footer-links">LINKS</h3>
+					<ul class="gtco-footer-links">
+						<li><a href="#" data-lang="footer-links-1">Privacy Policy</a></li>
+						<li><a href="#" data-lang="footer-links-2">Cookie Policy </a></li>
+						<li><a href="#" data-lang="footer-links-3">Terms and Conditions</a></li>
+						<li><a href="#" data-lang="footer-links-4">Q & A</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="gtco-widget">
+					<h3 data-lang="footer-touch">CONTACT</h3>
+					<ul class="gtco-quick-contact">
+					    <li> The University of Birmingham</li>
+						<li> Edgbaston</li>
+						<li> Birmingham B15 2TT</li>
+						<li> United Kingdom</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row copyright">
+			<div class="col-md-12">
+				<p class="pull-left">
+					<small class="block">© 2017 IT Innovation Birmingham. All Rights Reserved.</small>
+				</p>
+				<p class="pull-right">
+				</p>
+				<ul class="gtco-social-icons pull-right">
+					<li><a href="#"><i class="icon-github"></i></a></li>
+					<li><a href="#"><i class="icon-facebook"></i></a></li>
+					<li><a href="#"><i class="icon-linkedin"></i></a></li>
+					<li><a href="#"><i class="icon-dribbble"></i></a></li>
+				</ul>
+				<p>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- jQuery 2.2.3 -->
+<script  src="jslib/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="jslib/bootstrap.min.js"></script>
+<!-- Main -->
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
+

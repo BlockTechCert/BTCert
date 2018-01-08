@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> - Dashboard</title>
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link rel="stylesheet" href="../css/bootstrap-table.min.css">
+
+    <link href="/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link rel="stylesheet" href="../css/sweetalert.css">
+
+    <link href="/admin/css/style.css?v=4.1.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="widget navy-bg no-padding">
+                <div class="p-m">
+                    <h1 class="m-xs"><p id = "address"></p></h1>
+
+                    <h3 class="font-bold no-margins">
+                        Address
+                    </h3>
+                    <small>Network: Bitcoin</small>
+                </div>
+                <div class="flot-chart">
+                    <div class="flot-chart-content" id="flot-chart1"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-4">
+            <div class="widget lazur-bg no-padding">
+                <div class="p-m">
+                    <h1 class="m-xs">Public Numbers</h1>
+
+                    <h3 class="font-bold no-margins">
+                        <p id = "pubkeyNums"></p>
+                    </h3>
+                </div>
+                <div class="flot-chart">
+                    <div class="flot-chart-content" id="flot-chart2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="widget lazur-bg no-padding">
+                <div class="p-m">
+                    <h1 class="m-xs"><p id = "recycle_address"></p></h1>
+
+                    <h3 class="font-bold no-margins">
+                        Recycle Address
+                    </h3>
+                </div>
+                <div class="flot-chart">
+                    <div class="flot-chart-content" id="flot-chart4"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="widget navy-bg no-padding">
+                <div class="p-m">
+                    <h1 class="m-xs">Multi Script</h1>
+                    <small><p id = "multiSig" style = " word-break:break-all; word-wrap:break-word ;"></p></small>
+                </div>
+                <div class="flot-chart">
+                    <div class="flot-chart-content" id="flot-chart3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="widget navy-bg no-padding">
+                <div class="p-m">
+                    <h1 class="m-xs"><span class="glyphicon glyphicon-bitcoin"></span> Public Keys</h1>
+
+                    <div id = "publicKey"></div>
+                </div>
+                <div class="flot-chart">
+                    <div class="flot-chart-content" id="flot-chart1"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-4">
+            <div class="widget lazur-bg no-padding">
+                <div class="p-m">
+                    <h1 class="m-xs"><span class="glyphicon glyphicon-wrench"></span>  Signatures Required</h1>
+
+                    <h3 class="no-margins">
+                        <p id = "signaturesRequired"></p>
+                    </h3>
+                </div>
+                <div class="flot-chart">
+                    <div class="flot-chart-content" id="flot-chart2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- 全局js -->
+    <script src="/admin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="/admin/js/plugins/layer/layer.min.js"></script>
+    <!-- 自定义js -->
+    <script src="/admin/js/content.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+
+    <script src="../jslib/bootstrap-table.min.js"></script>
+
+    <!-- File Hash Lib-->
+    <script src="../jslib/spark-md5.min.js"></script>
+    <!-- Base64 Lib-->
+    <script src="../jslib/crypto-min.js"></script>
+
+    <script src="../jslib/jquery.base64.js"></script>
+
+    <script src="../jslib/sweetalert.min.js"></script>
+<!-- Main -->
+<script src ="../../js/btcert.js"></script>
+<script src="/admin/js/plugins/flot/jquery.flot.js"></script>
+
+
+<script src="../js/main.js"></script>
+<!-- <script src="../js/admin-sch-config-manage.js"></script> -->
+
+<script type="text/javascript">
+
+    function openAddressDetail(){
+        $.getJSON("/issuer/getAllSchIdentity/",function(result){
+            result = result[0];
+            latest_redeem_script = result.latest_redeem_script;
+            btc_address_list = result.btc_address_list[0];
+
+            latest_btc_address = "";
+
+            for(var item in btc_address_list){
+                latest_btc_address = item;
+                break;
+            }
+            latest_recycle_address = result.latest_recycle_address;
+
+            $("#address").html(latest_btc_address)
+            $("#recycle_address").html(latest_recycle_address)
+            $("#multiSig").html(latest_redeem_script)
+
+
+            var pubInfo = btcert.redeemScript2pubkeys(latest_redeem_script);
+
+            $("#signaturesRequired").html("It needs at least "+pubInfo.signaturesRequired + " signer to sign before broadcast");
+            $("#pubkeyNums").html("There are "+pubInfo.pubkeyNums + " Public keys");
+            // $("#signaturesRequired").html(pubInfo.pubkeys);
+
+
+            var publicKeyHtml = "";
+            for(var i = 0 ; i < pubInfo.pubkeys.length; i++){
+                publicKeyHtml = publicKeyHtml +"<p style=' word-break:break-all; word-wrap:break-word ;'>"+ pubInfo.pubkeys[i]+"</p>";
+            }
+
+            $("#publicKey").html(publicKeyHtml);
+
+        })
+    }
+
+    openAddressDetail();
+</script>
+<script>
+    $(document).ready(function () {
+        var d1 = [[1262304000000, 6], [1264982400000, 3057], [1267401600000, 20434], [1270080000000, 31982], [1272672000000, 26602], [1275350400000, 27826], [1277942400000, 24302], [1280620800000, 24237], [1283299200000, 21004], [1285891200000, 12144], [1288569600000, 10577], [1291161600000, 10295]];
+        var d2 = [[1262304000000, 5], [1264982400000, 200], [1267401600000, 1605], [1270080000000, 6129], [1272672000000, 11643], [1275350400000, 19055], [1277942400000, 30062], [1280620800000, 39197], [1283299200000, 37000], [1285891200000, 27000], [1288569600000, 21000], [1291161600000, 17000]];
+
+        var data1 = [
+            {
+                label: "Data 1",
+                data: d1,
+                color: '#17a084'
+            },
+            {
+                label: "Data 2",
+                data: d2,
+                color: '#127e68'
+            }
+        ];
+        $.plot($("#flot-chart1"), data1, {
+            xaxis: {
+                tickDecimals: 0
+            },
+            series: {
+                lines: {
+                    show: true,
+                    fill: true,
+                    fillColor: {
+                        colors: [{
+                            opacity: 1
+                        }, {
+                            opacity: 1
+                        }]
+                    },
+                },
+                points: {
+                    width: 0.1,
+                    show: false
+                },
+            },
+            grid: {
+                show: false,
+                borderWidth: 0
+            },
+            legend: {
+                show: false,
+            }
+        });
+
+        var data2 = [
+            {
+                label: "Data 1",
+                data: d1,
+                color: '#19a0a1'
+            }
+        ];
+        $.plot($("#flot-chart2"), data2, {
+            xaxis: {
+                tickDecimals: 0
+            },
+            series: {
+                lines: {
+                    show: true,
+                    fill: true,
+                    fillColor: {
+                        colors: [{
+                            opacity: 1
+                        }, {
+                            opacity: 1
+                        }]
+                    },
+                },
+                points: {
+                    width: 0.1,
+                    show: false
+                },
+            },
+            grid: {
+                show: false,
+                borderWidth: 0
+            },
+            legend: {
+                show: false,
+            }
+        });
+
+        var data3 = [
+            {
+                label: "Data 1",
+                data: d1,
+                color: '#fbbe7b'
+            },
+            {
+                label: "Data 2",
+                data: d2,
+                color: '#f8ac59'
+            }
+        ];
+        $.plot($("#flot-chart3"), data3, {
+            xaxis: {
+                tickDecimals: 0
+            },
+            series: {
+                lines: {
+                    show: true,
+                    fill: true,
+                    fillColor: {
+                        colors: [{
+                            opacity: 1
+                        }, {
+                            opacity: 1
+                        }]
+                    },
+                },
+                points: {
+                    width: 0.1,
+                    show: false
+                },
+            },
+            grid: {
+                show: false,
+                borderWidth: 0
+            },
+            legend: {
+                show: false,
+            }
+        });
+        var data4 = [
+            {
+                label: "Data 1",
+                data: d1,
+                color: '#1b7d68'
+            }
+        ];
+        $.plot($("#flot-chart4"), data4, {
+            xaxis: {
+                tickDecimals: 0
+            },
+            series: {
+                lines: {
+                    show: true,
+                    fill: true,
+                    fillColor: {
+                        colors: [{
+                            opacity: 1
+                        }, {
+                            opacity: 1
+                        }]
+                    },
+                },
+                points: {
+                    width: 0.1,
+                    show: false
+                },
+            },
+            grid: {
+                show: false,
+                borderWidth: 0
+            },
+            legend: {
+                show: false,
+            }
+        });
+
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+
+        $(".todo-list").sortable({
+            placeholder: "sort-highlight",
+            handle: ".handle",
+            forcePlaceholderSize: true,
+            zIndex: 999999
+        }).disableSelection();;
+
+        var mapData = {
+            "US": 498,
+            "SA": 200,
+            "CA": 1300,
+            "DE": 220,
+            "FR": 540,
+            "CN": 120,
+            "AU": 760,
+            "BR": 550,
+            "IN": 200,
+            "GB": 120,
+            "RU": 2000
+        };
+
+        $('#world-map').vectorMap({
+            map: 'world_mill_en',
+            backgroundColor: "transparent",
+            regionStyle: {
+                initial: {
+                    fill: '#e4e4e4',
+                    "fill-opacity": 1,
+                    stroke: 'none',
+                    "stroke-width": 0,
+                    "stroke-opacity": 0
+                }
+            },
+            series: {
+                regions: [{
+                    values: mapData,
+                    scale: ["#1ab394", "#22d6b1"],
+                    normalizeFunction: 'polynomial'
+                }]
+            },
+        });
+    });
+</script>
+</body>
+
+</html>
+

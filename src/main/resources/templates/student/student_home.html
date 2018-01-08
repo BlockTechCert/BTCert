@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/header :: header-css"></head>	
+<body>
+<div th:replace="fragments/header :: header"/></div>
+
+<div class="content">
+	<div class="wrap wrap-background">
+		<div class="row-content">
+			<div class="container">
+				<div class="row">
+					<div class="column-content column-main">
+						<div class="row content-header">
+							<h4 class="page-title">Welcome, <span id="student-name" th:inline="text">[[${#httpServletRequest.remoteUser}]]</span></h4>
+							<div class="breadcrumb p-0 m-0">
+								<a class="btn btn-success" href="/student/apply_form"><i class="fa fa-plus" aria-hidden="true"></i>
+									 Apply Now</a>
+
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="row bs-wizard" style="border-bottom:0">
+							<div class="col-xs-3 bs-wizard-step  step-1 disabled">
+								<div class="text-center bs-wizard-stepnum">
+									<h4 data-lang="workflow-1">New</h4>
+								</div>
+								<div class="progress">
+									<div class="progress-bar"></div>
+								</div>
+								<a href="#" class="bs-wizard-dot"></a>
+								<div class="bs-wizard-info text-center">
+									<p data-lang="workflow-1-des">The Checker has passed you applicant,The draft certificate had been generated </p>
+								</div>
+							</div>
+							<div class="col-xs-3 bs-wizard-step  step-2 disabled">
+								<div class="text-center bs-wizard-stepnum">
+									<h4 data-lang="workflow-2">Issued</h4>
+								</div>
+								<div class="progress">
+									<div class="progress-bar"></div>
+								</div>
+								<a href="#" class="bs-wizard-dot"></a>
+								<div class="bs-wizard-info text-center">
+									<p data-lang="workflow-2-des">The formal certificate is issued and its hash has been merged to the blockchain transaction</p>
+								</div>
+							</div>
+							<div class="col-xs-3 bs-wizard-step step-3 disabled">
+								<div class="text-center bs-wizard-stepnum">
+									<h4 data-lang="workflow-3">Multi-Signed</h4>
+								</div>
+								<div class="progress">
+									<div class="progress-bar"></div>
+								</div>
+								<a href="#" class="bs-wizard-dot"></a>
+								<div class="bs-wizard-info text-center">
+									<p data-lang="workflow-3-des">Each auditor has checked and signed for blockchain transaction which contains the your certificate. </p>
+								</div>
+							</div>
+							<div class="col-xs-3 bs-wizard-step step-4 disabled">
+								<div class="text-center bs-wizard-stepnum">
+									<h4 data-lang="workflow-4">Valid</h4>
+								</div>
+								<div class="progress">
+									<div class="progress-bar"></div>
+								</div>
+								<a href="#" class="bs-wizard-dot"></a>
+								<div class="bs-wizard-info text-center">
+									<p data-lang="workflow-4-des">the certificates was published to peer to peer network successfully. It will valid after miners' confirmation </p>
+								</div>
+							</div>
+						</div>
+
+						<div class="page-header">
+							<h4 class="page-title">
+								<i class="fa fa-history" aria-hidden="true"></i> Latest Application History
+							</h4>
+						</div>
+
+						<div class="content-table table-recent-apply">
+							<table class="table  table-striped">
+								<thead>
+								<tr>
+									<th>Applicant ID</th>
+									<th>Apply Time</th>
+									<th>Handle Time</th>
+									<th>State</th>
+									<th>Comment</th>
+									<th>Action</th>
+									<th></th>
+								</tr>
+								</thead>
+								<tbody class="sbcon">
+								<tr><td>
+									<div class="loadingsb" style="padding:50px 0 0px 30px;">
+										<div class="loader">
+											<div class="loader-inner ball-scale-multiple">
+												<div></div>
+												<div></div>
+												<div></div>
+												<p class="load" style="margin-left: 100px !important;padding-top:15px !important;font-size: 18px;">Loading</p>
+											</div>
+										</div>
+									</div>
+								</td><td></td><td></td><td></td><td></td><td></td>
+								</tr>
+								</tbody>
+							</table>
+								<div class="button-right">
+									<a class="" href="/student/apply_history">View All</a>
+								</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- �޸�ģ̬�� -->
+<div class="modal fade modal-edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Update an applicant</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+				<div id="alert-message-success" class="alert alert-success" role="alert"  style="display:none;">
+					<i class="fa fa-check-circle"></i> Your request has been succesfully updated
+				</div>
+				<div id="alert-message-fail" class="alert alert-danger" role="alert" style="display:none;">
+					<i class="fa fa-times-circle"></i> Sorry, please check your form
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="given_name">Given Name</label>
+						<input type="text" class="form-control" id="given_name" placeholder="given name"></input>
+						<small class="text-muted">Your given name, first name</small>
+					</div>
+					<div class="form-group">
+						<label for="family_name">Family Name</label>
+						<input type="text" class="form-control" id="family_name" placeholder="family name"></input>
+						<small class="text-muted">Your family name, surname</small>
+					</div>
+
+					<div class="form-group">
+						<label for="birthday">Birthday</label>
+						<input type="text" class="form-control" id="birthday" value="1995-01-01"></input>
+					</div>
+
+					<input type="hidden" id ="apply_note" value = "apply_note"></input>
+					<input type="hidden" id ="apply_state" value = "apply_state"></input>
+					<input type="hidden" id ="apply_time" value = "apply_time"></input>
+					<input type="hidden" id ="handle_time" value = "handle_time"></input>
+					<input type="hidden" id ="id" value = "id"></input>
+					<input type="hidden" id ="user_id" value = "user_id"></input>
+					<div class="form-group">
+						<label for="identity_type">Identity Type</label>
+						<select class="form-control" id = "identity_type">
+							<option value="email">email</option>
+							<option value="studentId">studentId</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="identity">Identity value</label>
+						<input type="text" class="form-control" id="identity" placeholder=""></input>
+					</div>
+
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="apply_type">Apply Type</label>
+						<select class="form-control" id = "apply_type">
+							<option value="Certificate">Certificate</option>
+							<option value="Transcript">Transcript</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="file">Your Apply File Hash</label>
+
+						<small class="text-muted"><span id="file_hash_show"></span></small>
+
+						<input id="file" type="file" class="file"></input>
+						<input id="file_hash" type="hidden" value=""></input>
+
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" onclick="updateStuConf()">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

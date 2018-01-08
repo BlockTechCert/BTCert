@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>BTCert</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<!-- Bootstrap 4.0 alpha -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<!-- Own Theme style -->
+	<link rel="stylesheet" href="../css/verify.css">
+	<link rel="stylesheet" href="../css/jquery.jsonview.css">
+	<link rel="stylesheet" href="../css/sweetalert.css">
+	<link rel="stylesheet" href="../css/loader.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+	<!-- plugins -->
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+	<div class="container top-nav">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mobile_navbar_header">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">
+				<div class="logo">
+					<img alt="BTcert" src="/images/BTCert-white.png" width="">
+				</div>
+			</a>
+		</div>
+		<div class="collapse navbar-collapse header-nav">
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="#" class="navbar_title">HOME</a>
+				</li>
+				<li>
+					<a href="#" class="navbar_title">INSTRUCTION</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+<section id="main_header" class="text-center">
+	<div class="container">
+		<div class="main_header">
+			<h1 class="h1_white">Certificate Verification</h1>
+			<h3 class="premium_copy_white"><!-- You can choose one of these methods to verify it --></h3>
+		</div>
+		<div class="clearspace_m"></div>
+	</div>
+</section>
+
+
+
+<div class="content" >
+	<div class="wrap wrap-background">
+		<div class="row-content">
+			<div class="container" >
+				<div class="row" >
+					<div class="col-md-4">
+
+						<div class="column-content">
+							<div class="column-main container-fluid" >
+								<div class="row bs-wizard" style="border-bottom:0;" >
+									<div class="panel-heading">
+										<h3 class="panel-title"><i class="fa fa-check" aria-hidden="true"></i> Authentication Code Verification</h3>
+									</div>
+
+									<div class="container-fluid" >
+										<label for="authenticationCode">Authentication Code</label>
+
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="Authentication Code" id ="authenticationCode" value = "3DWwmE19gHdv3xM3zPrVwqoRmbJQ6cCPHd">
+											<span class="input-group-btn">
+									<button class="showKey btn btn-default" type="button" onclick="checkAuthCode()">Check</button>
+								</span></div>
+
+										<div class="check">
+
+											<label for="usr">Authentication code access URL</label>
+											<input type="text" class="form-control" placeholder="authCodeUrl" id ="authCodeUrl" value = "http://www.ehcoo.com/images/uob_files.js">
+											<!--                    <textarea class="form-control" placeholder="textarea" id ="raw_tran" rows="6" readonly="readonly"></textarea>
+                                             -->
+											<br>
+											<label for="usr"> Verify the authenticity of the address:</label>
+											<table class="table table-hover">
+												<thead>
+												<tr>
+													<th>Progress</th>
+													<th>Result</th>
+												</tr>
+												</thead>
+
+												<tbody class="sbcon2">
+
+												</tbody>
+											</table>
+<!-- 
+											<div  id="certsInfo">
+											</div> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8">
+
+						<div class="column-content">
+							<div class="column-main container-fluid" >
+								<div class="row bs-wizard" style="border-bottom:0;" >
+									<div class="panel-heading">
+										<h3 class="panel-title"><i class="fa fa-file-text-o" aria-hidden="true"></i> Certificate File Verification</h3>
+									</div>
+									<div class="container-fluid" >
+										<div class="alert alert-block alert-success pagination-centered" id="drop_zone">
+											<h1>Drop certificate here or click for select</h1> 
+										    <div id = "state" style = "margin-top: -10px"></div>
+										</div>
+									</div>
+								</div>
+								<div style ="display:none">
+									<input type="file" id="files" name="files[]" multiple />
+									<textarea id="result"></textarea>
+								</div>
+
+								<div class="button-center" id = "verifyDiv" style = "display:none; margin: 10px;">
+									<button type="button" class="btn btn-primary" onclick="preview()">preview</button>
+									<button type="button" class="btn btn-primary" onclick="verify()">verify</button>
+								</div>
+
+								<div class="container-fluid">
+									<div id="list" >
+										<table class="table table-striped table-hover">
+											<tbody id = "resultTable">
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="footer">
+	<div class="container">
+		<div class="row copyright">
+			<div class="col-md-12">
+				<p class="pull-left">
+					<small class="block">© 2017 IT Innovation Centre Birmingham. All Rights Reserved.</small>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+ <!-- 修改模态框 -->
+ <div class="modal fade modal-edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Certificate Details</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- <div id="alert-message-success" class="alert alert-success" role="alert" >
+                        <i class="fa fa-check-circle"></i> Your request has been succesfully updated
+                    </div> -->
+                    <div  id="certsInfo">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id = "toggle-level-btn" onclick = "toggleJson()">Toggle</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<!-- jQuery 2.2.3 -->
+<script src="../jslib/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="../jslib/bootstrap.min.js"></script>
+<!-- Base64 Lib-->
+<script src="../jslib/crypto-min.js"></script>
+
+<script src="../jslib/jquery.base64.js"></script>
+
+<script src="../jslib/jquery.jsonview.js"></script>
+
+<script src ="../../jslib/jsbn.js"></script>
+<script src ="../../jslib/crypto-sha256.js"></script>
+<script src ="../../jslib/crypto-sha256-hmac.js"></script>
+<script src ="../../jslib/ellipticcurve.js"></script>
+<script src ="../../jslib/ripemd160.js"></script>
+<script src ="../../jslib/sha512.js"></script>
+<script src="../jslib/sweetalert.min.js"></script>
+
+<script src="../js/btcert.js"></script>
+
+<script type="text/javascript">
+
+
+//回调函数
+function configuration(data){
+	
+  var authenticationCode = $("#authenticationCode").val();
+  var timestamp = Math.round(new Date() / 1000)
+  
+  var authenticationMatchAddress = "";
+  for(var item in data.btc_address_list){  
+	  timestampMatch = data.btc_address_list[item].split("|")[1];
+	  if(timestampMatch > timestamp){
+		  authenticationMatchAddress = data.btc_address_list[item].split("|")[0]
+		  break;
+	  }
+  }
+  
+  if(authenticationMatchAddress == authenticationCode){
+	  var tr = "<td>Validate Addresses 【main】</td><td>OK</td>"
+	  $(".sbcon2").append(tr);
+  }
+  
+  //alert(data.btc_address_Hash)
+  //alert(data.identity_claim_0)
+  //alert(data.identity_claim_1)
+  //alert(data.identity_claim_2)
+}
+ 
+function checkAuthCode(){
+	 //$(".modal-details").modal('show');
+	 //var hash = Crypto.SHA256("1111");
+	 //var r = Crypto.util.bytesToHex(Crypto.SHA256(hash, {asBytes: true}));
+	 //var signature = btcert.getHashSignature(hash,"KyxFCqbaVgYZhiz6tZjZskTqyURnrCA4Up8Dud4wr23nG8Mp4UNs");
+	 //var pubKey = Crypto.util.hexToBytes("038b1df5a4e05a0ee0a36b5d3a1e44c22ebdb2a0ce57df45650b06b167a85d48d4");
+	 //secp256k1.verify("1111", signature, pubKey)
+	 
+	 
+	 var jsonp = document.createElement("script")
+	 //指定类型
+	 jsonp.type = "text/javascript"
+	 //添加链接地址
+	 jsonp.src = "http://www.ehcoo.com/images/uob_files.js"
+	 //将这个拼接 好的script标签添加到head标签中。
+	 document.getElementsByTagName("head")[0].appendChild(jsonp)
+	 
+ }
+ 
+ 
+ function toggleJson(){
+	 $('#certsInfo').JSONView('toggle', 1);
+ }
+
+  function preview(){
+	  var jsostr = document.getElementById('result').value;
+      var jsonobj = JSON.parse(jsostr)
+      $(".modal-edit").modal('show'); 		    	
+      $("#certsInfo").JSONView({})
+ 	  $("#certsInfo").JSONView(jsonobj, { collapsed: true });
+  }
+  
+  function verify(){
+	  //var authenticationCode = "3DWwmE19gHdv3xM3zPrVwqoRmbJQ6cCPHd";
+      var authenticationCode = $("#authenticationCode").val();
+	  if(authenticationCode != "" && authenticationCode != null){
+		   var jsostr = document.getElementById('result').value;
+		   var jsonobj = JSON.parse(jsostr) 
+		   var waithashstr = jsonobj.badge.name + jsonobj.badge.issuer.name + jsonobj.recipient.identity;
+		   
+		   var hash = Crypto.SHA256(waithashstr)
+		   
+		   merkleRoot = jsonobj.signature.merkleRoot;
+		   targetHash = jsonobj.signature.targetHash;
+		   proof = jsonobj.signature.proof;
+		   
+		   merkleRoot = jsonobj.signature.merkleRoot;
+		   //merkleRoot = "6a4030393639376461383735646634326365386233343534353736363763613533616437336538383032386238616638323765373962323461333536643133633536";
+		   anchorsId = jsonobj.signature.anchors[0].sourceId;
+		   //anchorsId = "6b18dbb7ef357c1c9bd15d2ab59e375c7718da59424b10abf09a2647e331d582"
+		  
+		   ensureMerkleRootOnBlockchain(merkleRoot,anchorsId);
+		   
+		   checkFileContentHash(hash,targetHash)
+		   
+		   merkleProofVerify(proof,targetHash,merkleRoot);
+		   
+		   verifyTransactionIsBelongedToAddress(authenticationCode,anchorsId);
+		   
+		   var r_address = jsonobj.badge.revocationClaim.revocationAddress;
+		   var rb_address = jsonobj.badge.revocationClaim.batchRevocationAddress;
+		   verifyRevokedCerts(r_address,rb_address,authenticationCode)
+		   
+		   var expires = jsonobj.badge.expires;
+		   verifyExpiredCerts(expires);
+       }else{
+           swal("Oops...", "Please input the authentication code", "error");
+       }
+  }
+  
+  
+  //输出结果
+  function printResult(progress,result){
+	  var output = [];
+	  output.push('<tr><td class="span12"><strong>', progress, '</strong></td><td>', result, '</td></tr>');
+      //document.getElementById('list').innerHTML = '<table class="table table-striped table-hover">' + output.join('') + '</table>' + document.getElementById('list').innerHTML;
+  	  $("#resultTable").append(output.join(''))
+  }
+  
+  //结果进行输出
+  function inuptResult(flag,progress_sccess,result_seccess,progress_failure,result_failure){
+	  if(flag){
+    	  printResult(progress_sccess,result_seccess)
+      }else{
+    	  printResult(progress_failure,result_failure)
+      }
+  }
+  
+  //检查文件的完整性
+  function checkFileContentHash(fileContentHash,targetHash){
+	  inuptResult((fileContentHash == targetHash),"<i class='fa fa-check' aria-hidden='true'></i> Success: ","Check File Content Hash","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Failure: </span>","Check File Content Hash")
+	  return fileContentHash == targetHash;
+  }
+  
+  //检查merkle tree是否正确
+  function merkleProofVerify(proof,targetHash,merkleRoot){
+	  if(proof.length == 0){
+		  inuptResult((targetHash == merkleRoot),"<i class='fa fa-check' aria-hidden='true'></i> Success:","Merkle Proof Verify","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Failure: </span>","Merkle Proof Verify")
+		  return targetHash == merkleRoot; 
+	  }
+	  proofHash = targetHash;
+	  for(var i = 0; i< proof.length; i++ ){
+		  if(proof[i]["left"] != null){
+			  proofHash = Crypto.SHA256(proof[i]["left"]+proofHash);
+		  }else if(proof[i]["right"] != null){
+			  proofHash = Crypto.SHA256(proofHash+proof[i]["right"]);
+		  }else{
+			    inuptResult(false,"<i class='fa fa-check' aria-hidden='true'></i> Success:","Merkle Proof Verify","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Failure:</span>","Merkle Proof Verify")
+				return false;
+		  }
+	  }
+	  
+	  inuptResult((proofHash == merkleRoot),"<i class='fa fa-check' aria-hidden='true'></i> Success:","Merkle Proof Verify","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Failure: </span>","Merkle Proof Verify")
+	  return proofHash == merkleRoot;
+  }
+  
+  //验证merkleroot在blockchian上
+  function ensureMerkleRootOnBlockchain(merkleRoot,anchorsId){
+	  //merkleRoot = "6a4030393639376461383735646634326365386233343534353736363763613533616437336538383032386238616638323765373962323461333536643133633536";
+	  var flag = false;
+	  //6b18dbb7ef357c1c9bd15d2ab59e375c7718da59424b10abf09a2647e331d582
+	  $.getJSON("https://chain.so/api/v2/tx/BTC/"+anchorsId,function(result){
+		  
+		  for(var i=0 ; i <result.data.outputs.length ; i++){
+			  if(result.data.outputs[i].script_hex.indexOf(merkleRoot) != -1){
+				  flag = true;
+				  break;
+			  }
+		  }
+		  if(flag){
+			  //处理其他情况
+			  inuptResult(true,"<i class='fa fa-check' aria-hidden='true'></i> Success:","Check Merkle Root On Blockchain","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Failure: </span>","Check Merkle Root On Blockchain")
+		  }else{
+			  inuptResult(false,"<i class='fa fa-check' aria-hidden='true'></i> Success:","Check Merkle Root On Blockchain","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Failure: </span>","Check Merkle Root On Blockchain")
+		  }
+	  }).fail(function(result) { 
+		  inuptResult(false,"<i class='fa fa-check' aria-hidden='true'></i> Success:","Check Merkle Root On Blockchain","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Failure: </span>","Check Merkle Root On Blockchain")
+      })
+  }
+  
+  //交易是否是否属于某个指定地址
+  function verifyTransactionIsBelongedToAddress(authenticationAddress,anchorsId){
+	  //3DWwmE19gHdv3xM3zPrVwqoRmbJQ6cCPHd
+	  
+ 	  $.get("https://chain.so/api/v2/get_tx_spent/BTC/"+authenticationAddress,function(result){
+ 		  
+ 		  var flag = false;
+ 		  if(result.status == 'error'){
+			  inuptResult(false,"<i class='fa fa-check' aria-hidden='true'></i> Belonged:","Transaction is belonged to school's address","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Not Belonged: </span>","Transaction is not belonged to school's address")
+ 		  }
+		  
+		  for(var i=0 ; i < result.data.txs.length ; i++){
+			  if(anchorsId == result.data.txs[i].txid){
+				  flag = true;
+				  break;
+			  }
+		  }
+		  
+		  if(flag){
+			  inuptResult(true,"<i class='fa fa-check' aria-hidden='true'></i> Belonged:","Transaction is belonged to school's address","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'>Not Belonged: </span>","Transaction is not belonged to school's address")
+		  }else{
+			  inuptResult(false,"<i class='fa fa-check' aria-hidden='true'></i> Belonged:","Transaction is belonged to school's address","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Not Belonged: </span>","Transaction is not belonged to school's address")
+		  }
+	  }) 
+ }
+  
+  //验证证书是否被回收
+   function verifyRevokedCerts(r_address,rb_address,authenticationAddress){
+	  $.getJSON("https://chain.so/api/v2/is_address_valid/BTC/"+r_address,function(result){
+		  if(result.status == 'success'){
+			  if(result.data.is_valid){
+				  $.getJSON("https://chain.so/api/v2/address/BTC/"+r_address,function(r_result){
+					  if(r_result.status == 'success'){
+						  var reflag = false;
+						  
+						 /* if(r_result.data.received_value == 0){
+							   alert(123)
+							  inuptResult(true,"<i class='fa fa-check' aria-hidden='true'></i> Not Revoked:","Certificate is not Revoked","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Revoked: </span>","Certificate is Revoked")
+							  return;
+						  } */
+						  if( r_result.data.txs.length > 0){
+							  for(var i = 0; i < r_result.data.txs.length; i++){
+								  var txs1 = r_result.data.txs[i];
+								  if(txs1 && txs1.incoming){
+									  for(var j = 0; j < txs1.incoming.inputs.length; j++){
+										  if(txs1.incoming.inputs[j].address == authenticationAddress){
+											  reflag = true;  
+										  }
+									  } 
+								  }
+							  }
+						  }
+						 
+						  if(!reflag){
+							  inuptResult(true,"<i class='fa fa-check' aria-hidden='true'></i> Not Revoked:","Certificate is not Revoked","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Revoked: </span>","Certificate is Revoked")
+						  }else{
+							  inuptResult(false,"<i class='fa fa-check' aria-hidden='true'></i> Not Revoked:","Certificate is not Revoked","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Revoked: </span>","Certificate is Revoked")
+						  }
+					  }else{
+						  //网络错误
+					  }
+				  })
+			  }else{
+				  inuptResult(true,"<i class='fa fa-check' aria-hidden='true'></i> Not Revoked:","Certificate is not Revoked","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Revoked: </span>","Certificate is Revoked")
+			  }
+		  }else{
+			  //网络错误
+			  //inuptResult(false,"<i class='fa fa-check' aria-hidden='true'></i> Not Revoked:","Certificate is not Revoked","<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Revoked:</span>","Certificate is Revoked")
+		  }
+	  })
+  }
+  
+  // verifyRevokedCerts("1DYANQxUBJZxER133TdwfFnQh1ofZvWrgZ","1DYANQxUBJZxER133TdwfFnQh1ofZvWrgZ",alert)
+  
+  //验证是否有效
+  function verifyExpiredCerts(expiredDate){
+	  expiredDate = expiredDate.replace("-","/");//替换字符，变成标准格式    
+	  var currentDate=new Date();//取今天的日期    
+	  expiredDate = new Date(Date.parse(expiredDate));    
+	 
+	  if(expiredDate < currentDate){  
+		inuptResult(true,"<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Expired: </span>","Certificate is Expired","<i class='fa fa-check' aria-hidden='true'></i> Not Expired:","Certificate is valid")
+	    return true;
+	  } 
+	  inuptResult(false,"<i class='fa fa-times' aria-hidden='true'></i> <span style = 'color:red'> Expired: </span> ","Certificate is Expired","<i class='fa fa-check' aria-hidden='true'></i> Not Expired:","Certificate is valid")
+	  return false;
+  }
+
+  
+  /* ensureMerkleRootOnBlockchain("6a4030393639376461383735646634326365386233343534353736363763613533616437336538383032386238616638323765373962323461333536643133633536"
+		  ,"6b18dbb7ef357c1c9bd15d2ab59e375c7718da59424b10abf09a2647e331d582",alert) */
+
+   var drop_zone;
+
+   document.getElementById('drop_zone').onclick = function () {
+     document.getElementById('files').click();
+     return false;
+   };
+
+   if ((typeof File !== 'undefined') && !File.prototype.slice) {
+     if(File.prototype.webkitSlice) {
+       File.prototype.slice = File.prototype.webkitSlice;
+     }
+
+     if(File.prototype.mozSlice) {
+       File.prototype.slice = File.prototype.mozSlice;
+     }
+   }
+
+   if (!window.File || !window.FileReader || !window.FileList || !window.Blob || !File.prototype.slice) {
+     alert('File APIs are not fully supported in this browser. Please use latest Mozilla Firefox or Google Chrome.');
+   }
+
+   function handle_worker_event(id) {
+     return function (event) {
+       if (event.data.result) {
+         $("#" + id).parent().html(event.data.result);
+       } else {
+         $("#" + id + ' .bar').css('width', event.data.block.end * 100 / event.data.block.file_size + '%');
+       }
+     };
+   }
+
+
+   function handle_file_select(event) {
+     event.stopPropagation();
+     event.preventDefault();
+
+     var i, output, files, file, reader;
+
+     files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
+     output = [];
+    
+     
+     if (files.length <= 0) {
+       return false;
+     }
+     
+     var fr = new FileReader();
+
+    
+     fr.onload = function(e) { 
+       var result = JSON.parse(e.target.result);
+       var formatted = JSON.stringify(result, null, 2);
+       document.getElementById('result').value = formatted;
+     }
+
+     fr.readAsText(files.item(0));
+     
+     
+     /* swal({
+            title: "Good Job",
+            text: "Your file has been uploaded to local Syetem.",
+            type: "success",
+            showCancelButton: false,
+            confirmButtonText: "OK",
+            closeOnConfirm: false
+     }) */
+     
+     
+     $("#state").html("Your file has been uploaded to local syetem successfully.");
+     $("#verifyDiv").show();
+     
+     
+    /*  for (i = 0; i < files.length; i += 1) {
+       file = files[i];
+       output.push('<tr><td class="span12"><strong>', file.name, '</strong></td><td> (', file.type || 'n/a', ') - ', file.size, ' bytes</td></tr>');
+       document.getElementById('list').innerHTML = '<table class="table table-striped table-hover">' + output.join('') + '</table>' + document.getElementById('list').innerHTML;
+     } */
+   }
+
+   function handle_drag_over(event) {
+     event.stopPropagation();
+     event.preventDefault();
+   }
+
+   drop_zone = document.getElementById('drop_zone');
+   drop_zone.addEventListener('dragover', handle_drag_over, false);
+   drop_zone.addEventListener('drop', handle_file_select, false);
+   document.getElementById('files').addEventListener('change', handle_file_select, false);
+   
+</script>
+
+</body>
+</html>

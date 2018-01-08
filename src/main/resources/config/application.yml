@@ -1,0 +1,47 @@
+server:
+    port: 8080
+  
+#server:  
+#  port: 443
+#  ssl:
+#    enabled: true
+#    key-store: "classpath:pub.jks"
+#    key-store-password: "******"
+    
+application:
+    message: I am now here!!
+    appname: and this is a SpringBoot App ...
+logging.file: app.log
+#management.port: 8081
+#management.addres: 127.0.0.1
+#management.context-path: /admin 
+endpoints.health.enabled: false
+security.basic.enabled: true
+management.security.enabled: false
+spring.aop.proxy-target-class: false
+#spring.mvc.static-path-pattern: /resources/**
+
+spring.data.mongodb.uri: mongodb://multi_sig:multi_sig@cluster0-shard-00-02-pllyi.mongodb.net:27017,cluster0-shard-00-01-pllyi.mongodb.net:27017,cluster0-shard-00-00-pllyi.mongodb.net:27017/bham_db?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin
+#spring.data.mongodb.uri: mongodb://appdb:appdb@127.0.0.1:27017/app_db
+
+
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: LEGACYHTML5
+
+---
+spring: 
+    profiles: development
+server:
+    port: 9090
+application: 
+    message: I am in DEV ENV
+---
+spring:
+    profiles: production
+server:
+    port: 10010
+application:
+    message: I am in PROD ENV

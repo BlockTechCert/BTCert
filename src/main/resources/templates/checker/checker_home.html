@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/header :: header-css"></head>	
+<body>
+<div th:replace="fragments/header :: header"/></div>
+
+<div class="content">
+	<div class="wrap wrap-background">
+		<div class="row-content">
+			<div class="container">
+				<div class="row">
+					<div class="column-content column-main">
+						<div class="row content-header">
+							<h4 class="page-title">Welcome, <span id="student-name" th:inline="text">[[${#httpServletRequest.remoteUser}]]</span></h4>
+							<ol class="breadcrumb p-0 m-0">
+								<li>
+									<a class="page-title-copy" href="#">DashBoard</a>
+								</li>
+								<li class="active">
+									Home
+								</li>
+							</ol>
+							<div class="clearfix"></div>
+						</div>
+						<div class="row" style="padding:20px;margin-bottom: 50px;">
+							<div class="col-xs-3">
+								<div class="widget style1">
+									<div class="row">
+										<div class="col-xs-4 text-center">
+											<i class="fa fa-envelope-open  fa-5x" style="color: #1c3c77;"></i>
+										</div>
+										<div class="col-xs-8 text-right">
+											<span> Total applications</span>
+											<h2 class="font-bold">29991</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-3">
+								<div class="widget style1">
+									<div class="row">
+										<div class="col-xs-4 text-center">
+											<i class="fa fa-clock-o fa-5x" style=" color: #E91E63;"></i>
+										</div>
+										<div class="col-xs-8 text-right">
+											<span> Wait to check number</span>
+											<h2 class="font-bold">333</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-3">
+								<div class="widget style1">
+									<div class="row">
+										<div class="col-xs-4 text-center">
+											<i class="fa fa-check fa-5x" style="
+    color: #009688;
+"></i>
+										</div>
+										<div class="col-xs-8 text-right">
+											<span> Passed check number
+											</span>
+											<h2 class="font-bold">444</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-3">
+								<div class="widget style1">
+									<div class="row">
+										<div class="col-xs-4 text-center">
+											<i class="fa fa-star fa-5x" style="
+    color: #ff6a00;
+"></i>
+										</div>
+										<div class="col-xs-8 text-right">
+											<span> Passing rates</span>
+											<h2 class="font-bold">100%</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="page-header">
+							<h4 class="page-title">
+								<i class="fa fa-history" aria-hidden="true"></i> Latest Certificate Status
+							</h4>
+						</div>
+
+						<div class="content-table table-recent-apply">
+							<table class="table  table-striped">
+								<thead>
+								<tr>
+									<th>Applicant  ID</th>
+									<th>Applicant Identity</th>
+									<th>Applicant Name</th>
+									<th>Apply Time</th>
+									<th>State</th>
+									<th>Action</th>
+									<th></th>
+								</tr>
+								</thead>
+								<tbody class="sbcon">
+								<tr><td>
+									<div class="loadingsb" style="padding:50px 0 0px 30px;">
+										<div class="loader">
+											<div class="loader-inner ball-scale-multiple">
+												<div></div>
+												<div></div>
+												<div></div>
+												<p class="load" style="margin-left: 100px !important;padding-top:15px !important;font-size: 18px;">Loading</p>
+											</div>
+										</div>
+									</div>
+								</td><td></td><td></td><td></td><td></td><td></td>
+								</tr>
+								</tbody>
+
+							</table>
+						</div>
+						<input type="hidden" class="current-page" value="0" />
+                        <div name="page" id="pages"></div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

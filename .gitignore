@@ -1,0 +1,8 @@
+/target
+app.log
+app.log.1
+*.log
+/.idea
+/.settings
+src/main/resources/static/js/scss/
+src/main/resources/static/plugins/
