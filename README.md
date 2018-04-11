@@ -58,28 +58,6 @@ The database has been designed to contain two categories of data: the public aut
 *Figure 5. top level data flow diagram *
 Figure 5 maps out the high-level data flow diagram. It shows that the data flow is unidirectional from the internal areas to the internet. The issuing system reads the certificate from the MongoDB and broadcasts its "point" data to the blockchain. The verification service only needs access to the blockchain to check the authenticity of the certificate.
 
-
-
-**procedure security**  
-The certificate issue and revocation process are very secure. This has been achieved in the
-following three ways. First, the ''issue and revoke key'' is distributed among different members of
-the academic committee, and the members are not allowed to access these critical operations
-individually, what's more, the system records and monitors all the activity related to issuing and
-revoking certificates. Lastly, the process of certificate issuing and revoking is democratic,
-requiring the majority of the academic committee members to sign.
-
-Leaking the password is a risk in the system, but the system is still secured. A leaked password is
-difficult to exploit for hackers, due to the lack of the private key that plays an essential role in
-issuing or revoking certificates. What's more, the system is not allowed to store the private key,
-and it provides enough protection mechanisms for the saved passwords and credentials. Thus,
-leaking of passwords would make the system vulnerable, but it would not provide a fraudster with
-any useful information.
-
-Leaking the password as well as the private key would be a threat to our system as it would. 
-From the functional point of view, it allows the hacker to access all the operations and resources of the system. However, regarding the business logic, we can certainly solve this problem, since
-each transaction needs to signed by the majority of the academic committee members.In the most extreme case of all, of the academic committee members leaking the password and the private key at the same time, there is no doubt that the system would be paralyzed. It would be impossible to prevent an attacker from awarding "legal" certificates. Even if the awarding institution revoked the certificate in public at a later date, the independent verifier would have no idea about the difference between a valid and an invalid certificate, except for additional proof from additional authorities about the time when the transaction was performed.
-
-
 ## System deployment  
 **Code structure :** 
 ```
@@ -142,5 +120,5 @@ Public verifying page: https://btcert.com/verify
 Intranet login page: https://btcert.com/login  
 
 ## Futrue work
-As the [telegraph](http://www.telegraph.co.uk/investing/news/bitcoin-transaction-fees-have-become-high/) reported, Bitcoin transaction fees have skyrocketed in recent weeks with a typical transaction now costing up to (£15). The cost of attaching the data to the bitcoin blockchain is increasing significantly. In the future, we may replace the bitcoin blockchain infrastructure by adopted Ethereum or Hyperledger, or we will build our peer to peer network applications.
+As  [The Telegraph](http://www.telegraph.co.uk/investing/news/bitcoin-transaction-fees-have-become-high/) reported, Bitcoin transaction fees have skyrocketed in the past, with a typical transaction costing up to £15. In the future BTCert may replace the bitcoin blockchain infrastructure by using Ethereum or Hyperledger to avoid high transaction fees.
 
